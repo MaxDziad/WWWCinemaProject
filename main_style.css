@@ -1,0 +1,36 @@
+.billboard{
+    position: relative;
+    display: flex;
+    background: #CCC;
+    margin-top: 100px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+.main_poster{
+    position: sticky;
+    height: 800px;
+    left: auto;
+}
+.title{
+    text-align: center;
+    position: sticky;
+    font-weight: bold;
+    font-size: 30px;
+}
+.billboard_text{
+    flex: 1;
+    max-height: 800px;
+    margin: 10px;
+
+}
+
+.buttons{
+    display: flex;
+    bottom: 0;
+}
+.table{
+    width: 80%;
+}
+.buy_ticket_button{
+    width: 20%;
+}
