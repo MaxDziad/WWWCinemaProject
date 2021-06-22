@@ -34,8 +34,8 @@ $today =  date("d.m.Y")  ;
 echo $twig->render('index.html.twig', ['date'=>$today]);
 
 
-$allowed_pages = ['main', 'repertuar', 'film', 'koszyk', 'login', 'rejestracja'];
-$protected_pages = ['profil'];
+$allowed_pages = ['main', 'movies', 'movie_details', 'cart', 'login', 'registration', 'hall_places'];
+$protected_pages = ['profile'];
 
 if (isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $allowed_pages)) {
     if (in_array($_GET['page'], $protected_pages) && !isset($_SESSION['id'])) {
@@ -49,7 +49,6 @@ if (isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $allowed_pa
     }
 } else {
     include('main.php');
-//    include('hall_places.php');
 }
 
 
