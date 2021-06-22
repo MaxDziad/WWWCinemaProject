@@ -31,6 +31,9 @@
 .table{
     width: 80%;
 }
+caption{
+    caption-side: top;
+}
 .buy_ticket_button{
     width: 20%;
 }
