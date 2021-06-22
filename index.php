@@ -28,8 +28,11 @@ include("config.inc.php");
 //    exit("Nie znaleziono konfiguracji bazy danych.");
 //}
 
+$today =  date("d.m.Y")  ;
+
 // Render index.html
-//echo $twig->render('index.html.twig', []);
+echo $twig->render('index.html.twig', ['date'=>$today]);
+
 
 $allowed_pages = ['main', 'repertuar', 'film', 'koszyk', 'login', 'rejestracja'];
 $protected_pages = ['profil'];
@@ -45,8 +48,8 @@ if (isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $allowed_pa
         print 'Plik ' . $_GET['page'] . '.php nie istnieje.';
     }
 } else {
-//    include('main.php');
-    include('hall_places.php');
+    include('main.php');
+//    include('hall_places.php');
 }
 
 
