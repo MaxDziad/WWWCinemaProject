@@ -15,25 +15,40 @@
 </head>
 
 <body style="background-color: #081940">
-<nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #BA4A00;">
-    <div class="container">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav" id="menu-buttons">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Tytuł Strony</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/repertuar">Repertuar</a>
-                </li>
-            </ul>
+<div class="container-xl">
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #BA4A00;">
+        <div class="container-md">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/"><h4>Tytuł Strony</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/movies">Repertuar</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Zaloguj się</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Zarejestruj się</a>
+                    </li>
+                </ul>
+                <form class="form-inline pt-3" id="navbar-search">
+                    <input class="form-control mr-sm-2 my-0" type="search" placeholder="Search movie..." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
 
 <footer class="footer mt-auto" style="background-color: #f5f5f5; position: fixed; bottom: 0px">
     <div class="container">
