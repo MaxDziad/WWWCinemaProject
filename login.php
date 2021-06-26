@@ -12,9 +12,9 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         if (password_verify($_POST['password'], $user['password'])) {
             $_SESSION['id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
-            $komunikat="Zalogowano pomyślnie";
-        } else $komunikat="Hasło niepoprawne";
-    } else $komunikat="Nie ma takiego użytkownika";
+            $komunikat="Zalogowano pomyślnie.";
+        } else $komunikat="Hasło niepoprawne.";
+    } else $komunikat="Nie ma takiego użytkownika.";
 }
 
 echo $twig->render('login.html.twig', ['komunikat'=>$komunikat]);
