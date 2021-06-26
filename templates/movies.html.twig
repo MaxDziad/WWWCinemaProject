@@ -1,3 +1,16 @@
-<div>
-
+<div class="card">
+    <div class="card-body">
+        <div class="col-3">
+            <img src="{{ poster_path }}" alt="...">
+        </div>
+        <div class="col-9">
+            <h5 class="card-title">{{ title }}</h5>
+            <br>
+            <b>Opis:</b> {{ short_description }}
+            <br>
+            <b>Gatunek:</b> {{ genre }}
+            <br>
+            <b>Premiera:</b> {{ available_date }}
+        </div>
+    </div>
 </div>

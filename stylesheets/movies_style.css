@@ -1,0 +1,4 @@
+img {
+    height: 150px;
+    width : auto; /*to preserve the aspect ratio of the image*/
+}
