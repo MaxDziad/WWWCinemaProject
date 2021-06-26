@@ -1,25 +1,22 @@
+<center>
 <div class="container mb-5">
-<div class="row">
-<div class="col-md-12">
-<br>
-			
-
-<div class="card mb-3">
-    <div class="card-header">
-        ZALOGUJ SIĘ
+    <div class="col-md-6">
+        <div> <br> <br> </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                ZALOGUJ SIĘ
+            </div>
+            <div class="card-body">
+                <form action="/login" method="POST">
+                    <div> <br> </div>
+                    <input type="text" name="email" placeholder="E-mail"></input>
+                    <div> <br> </div>
+                    <input type="password" name="password" placeholder="Hasło"></input>
+                    <div> <br> <br>  </div>
+                    <input type="submit" value="Zaloguj się"></input>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-        <form action="/login" method="POST">
-            <input type="text" name="new_email" placeholder="Podaj e-mail"></input>
-            <input type="password" name="new_password" placeholder="Podaj hasło"></input>
-            <input type="submit" value="Załóż konto"></input>
-            <div><br></div>
-            <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
-        </form>
-
-    </div>
 </div>
-
-</div>
-</div>
-</div>
+</center>
