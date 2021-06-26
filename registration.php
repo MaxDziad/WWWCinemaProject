@@ -22,11 +22,11 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
             if (!preg_match('/^[a-zA-Z0-9\-\_\.]+\@[a-zA-Z0-9\-\_\.]+\.[a-zA-Z]{2,5}$/D', $new_email)) {
                 $komunikat = "Podany adres email jest niepoprawny.";
             } else {
-                if ($new_password = !$new_password_confirm) {
+                if (strcmp($new_password, $new_password_confirm)!==0) {
                     $komunikat = "Podane hasła różnią się.";
                 } else {
-                    if (strlen($new_password) < 7 || strlen($new_password_confirm) < 7) {
-                        $komunikat = "Hasło musi mieć co najmniej 7 znaków.";
+                    if (strlen($new_password) < 5) {
+                        $komunikat = "Hasło musi mieć co najmniej 5 znaków.";
                     } else {
                         $new_password = password_hash($new_password, PASSWORD_DEFAULT);
                         try {
