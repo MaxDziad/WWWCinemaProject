@@ -1,6 +1,6 @@
 <?php
 
-$komunikat=' ';
+$komunikat='';
 
 if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['new_email']) && isset($_POST['new_phonenumber']) && isset($_POST['new_password']) && isset($_POST['new_password_confirm']) ) {
     $new_name = $_POST['new_name'];
@@ -15,7 +15,7 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
    // $recaptcha = new \ReCaptcha\ReCaptcha('6LcrreYUAAAAALTdoToeer_H4NZ1ECK4U76g0huL');
    // $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
-  //  if ($resp->isSuccess()) {
+   // if ($resp->isSuccess()) {
     if(strlen($new_password)>7){
         if ($new_password == $new_password_confirm) {
             $new_password = password_hash($new_password, PASSWORD_DEFAULT);
@@ -35,9 +35,9 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
         }
     } else {
         $komunikat = "Hasło musi mieć co najmniej 7 znaków.";
-        echo '<script type="text/JavaScript"> 
+        /*echo '<script type="text/JavaScript">
                           alert("Hasło musi mieć co najmniej 7 znaków.");
-                          </script>';
+                          </script>';*/
     }
    /* } else {
         print '<span style="color: red;">Serio jesteś robotem?</span>';
