@@ -22,19 +22,23 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
             if (!preg_match('/^[a-zA-Z0-9\-\_\.]+\@[a-zA-Z0-9\-\_\.]+\.[a-zA-Z]{2,5}$/D', $new_email)) {
                 $komunikat = "Podany adres email jest niepoprawny.";
             } else {
-                if (strcmp($new_password, $new_password_confirm)!==0) {
-                    $komunikat = "Podane hasła różnią się.";
+                if (!preg_match('/^[0-9]{9}$/', $new_phonenumber)) {
+                    $komunikat = "Podany numer telefonu jest niepoprawny.";
                 } else {
-                    if (strlen($new_password) < 5) {
-                        $komunikat = "Hasło musi mieć co najmniej 5 znaków.";
+                    if (strcmp($new_password, $new_password_confirm) !== 0) {
+                        $komunikat = "Podane hasła różnią się.";
                     } else {
-                        $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-                        try {
-                            $stmt = $dbh->prepare('INSERT INTO users (id, name, surname, email, phonenumber, password, created) VALUES (null, :name, :surname, :email, :phonenumber, :password, NOW())');
-                            $stmt->execute([':name' => $new_name, ':surname' => $new_surname, ':email' => $new_email, ':phonenumber' => $new_phonenumber, ':password' => $new_password]);
-                            $komunikat = "Konto zostało założone.";
-                        } catch (PDOException $e) {
-                            $komunikat = "Podany adres email jest już zajęty.";
+                        if (strlen($new_password) < 5) {
+                            $komunikat = "Hasło musi mieć co najmniej 5 znaków.";
+                        } else {
+                            $new_password = password_hash($new_password, PASSWORD_DEFAULT);
+                            try {
+                                $stmt = $dbh->prepare('INSERT INTO users (id, name, surname, email, phonenumber, password, created) VALUES (null, :name, :surname, :email, :phonenumber, :password, NOW())');
+                                $stmt->execute([':name' => $new_name, ':surname' => $new_surname, ':email' => $new_email, ':phonenumber' => $new_phonenumber, ':password' => $new_password]);
+                                $komunikat = "Konto zostało zarejestrowane poprawnie.";
+                            } catch (PDOException $e) {
+                                $komunikat = "Podany adres email jest już zajęty.";
+                            }
                         }
                     }
                 }
