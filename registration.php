@@ -12,8 +12,8 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
 
     $ip = $_SERVER['REMOTE_ADDR'];
 
-    //$recaptcha = new \ReCaptcha\ReCaptcha('6LcrreYUAAAAALTdoToeer_H4NZ1ECK4U76g0huL');
-    //$resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+   // $recaptcha = new ReCaptcha('6LcrreYUAAAAALTdoToeer_H4NZ1ECK4U76g0huL');
+  //  $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
    // if ($resp->isSuccess()) {
         if($new_name=='' || $new_surname=='' || $new_email=='' || $new_phonenumber=='' || $new_password=='' || $new_password_confirm==''){
@@ -46,4 +46,5 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
 }
 
 echo $twig->render('registration.html.twig', ['komunikat'=>$komunikat]);
+
 ?>
