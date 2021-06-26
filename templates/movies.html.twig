@@ -1,16 +1,29 @@
-<div class="card">
-    <div class="card-body">
-        <div class="col-3">
-            <img src="{{ poster_path }}" alt="...">
-        </div>
-        <div class="col-9">
-            <h5 class="card-title">{{ title }}</h5>
-            <br>
-            <b>Opis:</b> {{ short_description }}
-            <br>
-            <b>Gatunek:</b> {{ genre }}
-            <br>
-            <b>Premiera:</b> {{ available_date }}
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{ poster_path }}" alt="">
+                </div>
+                <div class="col">
+                    <span class="card-title" style="font-family: Impact; font-size: xx-large;">{{ title }}</span>
+                    <br>
+                    <b>Opis:</b> {{ short_description }}
+                    <br>
+                    <b>Gatunek:</b> {{ genre }}
+                    <br>
+                    <b>Czas Twania:</b> {{ duration }} minuty
+                    <br>
+                    <b>Produkcja:</b> {{ production }}
+                    <br>
+                    <b>Reżyseria:</b> {{ direction }}
+                    <br>
+                    <b>Premiera:</b> {{ available_date }}
+                    <br><br>
+                    <a href="#" class="btn btn-success mx-2 btn-lg float-right active" role="button" aria-pressed="true">REZERWUJ BILET</a>
+                    <a href="#" class="btn btn-success mx-2 btn-lg float-right active" role="button" aria-pressed="true">SZCZEGÓŁY</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
