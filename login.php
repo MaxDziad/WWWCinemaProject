@@ -1,5 +1,6 @@
 <?php
-echo $twig->render('login.html.twig', []);
+
+$komunikat=' ';
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
 
@@ -11,9 +12,11 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         if (password_verify($_POST['password'], $user['password'])) {
             $_SESSION['id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
-            print '<span style="color: red;">ZALOGOWANO</span>';
-        }
-    }
+            $komunikat="Zalogowano pomyślnie";
+        } else $komunikat="Hasło niepoprawne";
+    } else $komunikat="Nie ma takiego użytkownika";
 }
+
+echo $twig->render('login.html.twig', ['komunikat'=>$komunikat]);
 
 ?>
