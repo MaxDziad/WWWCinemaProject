@@ -1,10 +1,16 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/login_registration_style.css">
+    <title>KINOS</title>
+</head>
+
 <center>
 <div class="container mb-5">
     <div class="col-md-6">
         <div> <br> <br> </div>
         <div class="card mb-3">
             <div class="card-header">
-                ZALOGUJ SIĘ
+              <b>LOGOWANIE</b>
             </div>
             <div class="card-body">
                 <form action="/login" method="POST">
@@ -13,7 +19,7 @@
                     <div> <br> </div>
                     <input type="password" name="password" placeholder="Hasło"></input>
                     <div> <br> <br>  </div>
-                    <input type="submit" value="Zaloguj się"></input>
+                    <input class="btn btn-success mx-2 btn-lg active" type="submit" value="ZALOGUJ SIĘ"></input>
                     <div> <br> {{ komunikat }} </div>
                 </form>
             </div>
@@ -21,3 +27,4 @@
     </div>
 </div>
 </center>
+</html>
