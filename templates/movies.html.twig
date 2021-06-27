@@ -3,9 +3,9 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-3">
-                    <img src="{{ poster_path }}" alt="">
+                    <img class="small_img" src="{{ poster_path }}" alt="">
                 </div>
-                <div class="col">
+                <span class="col" style="color: white;">
                     <span class="card-title" style="font-family: Impact; font-size: xx-large;">{{ title }}</span>
                     <br>
                     <b>Opis:</b> {{ short_description }}
@@ -21,8 +21,8 @@
                     <b>Premiera:</b> {{ available_date }}
                     <br><br>
                     <a href="#" class="btn btn-success mx-2 btn-lg float-right active" role="button" aria-pressed="true">REZERWUJ BILET</a>
-                    <a href="#" class="btn btn-success mx-2 btn-lg float-right active" role="button" aria-pressed="true">SZCZEGÓŁY</a>
-                </div>
+                    <a href="/movies/show/{{ id }}" class="btn btn-success mx-2 btn-lg float-right active" role="button" aria-pressed="true">SZCZEGÓŁY</a>
+                </span>
             </div>
         </div>
     </div>

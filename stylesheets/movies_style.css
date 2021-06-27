@@ -1,8 +1,17 @@
-img {
+.small_img {
     height: 300px;
     width : auto; /*to preserve the aspect ratio of the image*/
 }
 
+.big_img{
+    height: 600px;
+    width : auto; /*to preserve the aspect ratio of the image*/
+}
+
 .card {
-    background-color: darkkhaki;
+    background-color: black;
+}
+
+#text1 {
+    color: white;
 }

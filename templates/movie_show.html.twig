@@ -1,0 +1,46 @@
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-5">
+                    <img class="big_img" src="{{ poster_path }}" alt="">
+                </div>
+                <span class="col" style="color: white;">
+                    <a href="#" class="btn btn-success mx-2 btn-lg float-right active" role="button" aria-pressed="true">REZERWUJ BILET</a>
+                    <a href="/movies" class="btn btn-success mx-2 btn-lg float-right active" role="button" aria-pressed="true">POWRÓT</a>
+                    <br><br>
+                    <span class="card-title" style="font-family: Impact; font-size: 40px;">{{ title }}</span>
+                    <br><br>
+                    <b>Opis:</b> {{ detailed_description }}
+                    <br><br>
+                    <b>Gatunek:</b> {{ genre }}
+                    <br>
+                    <b>Czas Twania:</b> {{ duration }} minuty
+                    <br>
+                    <b>Produkcja:</b> {{ production }}
+                    <br>
+                    <b>Reżyseria:</b> {{ direction }}
+                    <br>
+                    <b>Premiera:</b> {{ available_date }}
+                    <br>
+                    <b>Data wygaśnięcia:</b> {{ expiration_date }}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-1">
+    <div class="card">
+        <div class="card-body mx-auto">
+            <span class="mx-auto" style="color: white; font-family: Impact; font-size: 60px;">TRAILER</span>
+            <br>
+
+        </div>
+        <div class="container">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="{{ trailer_URL }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
