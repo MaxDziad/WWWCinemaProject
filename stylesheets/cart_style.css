@@ -1,0 +1,11 @@
+.card {
+    background-color: black;
+    color: white;
+}
+
+.card-header {
+    background-color: #28a745;
+    font-size: 25px;
+}
+
+
