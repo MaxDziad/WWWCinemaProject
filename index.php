@@ -52,7 +52,7 @@ if ((isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $pages_for
     if (file_exists($_GET['page'] . '.php')) {
         include($_GET['page'] . '.php');
     } else {
-        print 'Plik ' . $_GET['page'] . '.php nie istnieje.';
+        print '<p style="font-weight: bold; text-align: center; margin-top: 50px;"> Plik ' . $_GET['page'] . '.php nie istnieje.</p>';
     }
 } elseif (isset($_GET['page']) && !isset($_SESSION['id']) && in_array($_GET['page'], $pages_for_logged)) {
     print '<p style="font-weight: bold; color: red; text-align: center; margin-top: 50px;">Nie masz uprawnień do tej strony.</p>';
