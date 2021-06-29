@@ -1,6 +1,6 @@
 <?php
 
-$komunikat=' ';
+$komunikat = '';
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
 
@@ -17,6 +17,8 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['email'] = $user['email'];
                 $komunikat = "Zalogowano pomyślnie.";
+                header('Location: /');
+                //exit();
             } else $komunikat = "Hasło niepoprawne.";
         } else $komunikat = "Nie ma takiego użytkownika.";
     }

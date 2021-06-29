@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 
 include("config.inc.php");
 
+session_start();
 
 // Database connection, commented cause of errors
 
@@ -23,23 +24,40 @@ if (isset($config) && is_array($config)) {
 else {
     exit("Nie znaleziono konfiguracji bazy danych.");
 }
+if (isset($_GET['logout'])) {
+    unset($_SESSION['id']);
+    unset($_SESSION['email']);
+}
 
-$today =  date("d.m.Y")  ;
+if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
+    $login_link = "/?logout=1";
+    $login_button = "Wyloguj się";
+    $profile_link = "/profile";
+    $profile_button = "Moje konto";
+} else {
+    $login_link = "/login";
+    $login_button = "Zaloguj się";
+    $profile_link = "/registration";
+    $profile_button = "Zarejestruj się";
+}
 
 // Render index.html
-echo $twig->render('index.html.twig', ['date'=>$today]);
+echo $twig->render('index.html.twig', ['login_link'=>$login_link, 'login_button'=>$login_button, 'profile_link'=> $profile_link, 'profile_button'=>$profile_button]);
 
-$allowed_pages = ['main', 'movies', 'movie_details', 'cart', 'login', 'registration', 'hall_places'];
-$protected_pages = ['profile'];
+$pages_for_all = ['main', 'movies', 'movie_details', 'cart', 'hall_places', 'contact'];
+$pages_for_logged = ['profile'];
+$pages_for_unlogged = ['login', 'registration'];
 
-if (isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $allowed_pages) && (!in_array($_GET['page'], $protected_pages) || isset($_SESSION['id']))) {
+if ((isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $pages_for_all)) || (isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $pages_for_logged) && isset($_SESSION['id'])) || (isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $pages_for_unlogged) && !isset($_SESSION['id']))) {
     if (file_exists($_GET['page'] . '.php')) {
         include($_GET['page'] . '.php');
     } else {
         print 'Plik ' . $_GET['page'] . '.php nie istnieje.';
     }
-} elseif (isset($_GET['page']) && !isset($_SESSION['id']) && in_array($_GET['page'], $protected_pages)) {
-    print '<p style="font-weight: bold; color: red;">Nie masz uprawnień do tej strony.</p>';
+} elseif (isset($_GET['page']) && !isset($_SESSION['id']) && in_array($_GET['page'], $pages_for_logged)) {
+    print '<p style="font-weight: bold; color: red; text-align: center; margin-top: 50px;">Nie masz uprawnień do tej strony.</p>';
+} elseif (isset($_GET['page']) && isset($_SESSION['id']) && in_array($_GET['page'], $pages_for_unlogged)) {
+    print '<p style="font-weight: bold; color: red; text-align: center; margin-top: 50px;">Nie masz uprawnień do tej strony.</p>';
 } else {
     include('main.php');
 }

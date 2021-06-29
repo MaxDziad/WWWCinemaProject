@@ -12,12 +12,11 @@
             </div>
             <div class="card-body">
                 <form action="/login" method="POST">
-                    <div> <br> </div>
-                    <input type="text" name="login" placeholder="E-mail"></input>
-                    <div> <br> </div>
-                    <input type="password" name="password" placeholder="Hasło"></input>
-                    <div> <br> <br> </div>
-                    <input class="btn btn-success mx-2 btn-lg active" type="submit" value="ZALOGUJ SIĘ"></input>
+                    <input id="login_input_email" type="text" name="login" placeholder="E-mail">
+                    <br>
+                    <input id="login_input_password" type="password" name="password" placeholder="Hasło">
+                    <br>
+                    <input class="btn btn-success mx-2 btn-lg active" type="submit" value="ZALOGUJ SIĘ">
                     <div> <br> {{ komunikat }} </div>
                 </form>
             </div>

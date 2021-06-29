@@ -8,3 +8,16 @@
     font-size: 25px;
 }
 
+#login_input_email {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#login_input_password {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin-top: 30px;
+}

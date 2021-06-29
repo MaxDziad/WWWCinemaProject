@@ -1,6 +1,6 @@
 <?php
 
-$komunikat='';
+$komunikat = '';
 
 if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['new_address']) && isset($_POST['new_address_cd']) && isset($_POST['new_postcode']) && isset($_POST['new_city']) && isset($_POST['new_email']) && isset($_POST['new_phone_number']) && isset($_POST['new_password']) && isset($_POST['new_password_confirm']) ) {
     $new_name = $_POST['new_name'];
