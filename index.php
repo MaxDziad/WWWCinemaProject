@@ -30,7 +30,7 @@ if (isset($_GET['logout'])) {
 }
 
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
-    $login_link = "/?logout=1";
+    $login_link = "/logout";
     $login_button = "Wyloguj się";
     $profile_link = "/profile";
     $profile_button = "Moje konto";
