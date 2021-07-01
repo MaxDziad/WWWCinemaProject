@@ -9,7 +9,7 @@ $titles = array();
 $poster_paths = array();
 $i = 0;
 
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC) and $i =8) {
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC) and $i <=8) {
     array_push($titles , htmlspecialchars($row['title'], ENT_QUOTES | ENT_HTML401));
     array_push($poster_paths, htmlspecialchars($row['poster_path'], ENT_QUOTES | ENT_HTML401));
     $i++;

@@ -4,17 +4,15 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
-<script>
-    document.getElementsByClassName("arrow").style.height=document.getElementsByClassName("img1").style.height;
-
-</script>
 <div class="jumbotron">
     <div class="container-fluid">
         <div class="row">
@@ -22,16 +20,16 @@
                 <button class="arrow left">
                     <i class="arr lef"></i>
                 </button>
-                <img class="img1" src="{{ poster_path[0] }}">
+                <img id="img 1" src="{{ poster_path[0] }}">
             </div>
             <div class="col-4">
-                <img class="img2" src="{{ poster_path[1] }}">
+                <img id="img 2" src="{{ poster_path[1] }}">
             </div>
             <div class="col-4">
                 <button class="arrow right">
                     <i class="arr rig"></i>
                 </button>
-                <img class = "img3" src="{{ poster_path[3] }}">
+                <img id="img 3" src="{{ poster_path[2] }}">
             </div>
 
         </div>
@@ -39,61 +37,32 @@
 </div>
 
 
-{#<section class="billboard">#}
-
-{#    <img src="/resources/poster.jpg" class="main_poster">#}
-{#    <div class="billboard_text">#}
-{#        <p class="title">Tytuł</p>#}
-{#        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque velit nisl, aliquam a augue#}
-{#            non, mattis luctus nunc. Nulla at egestas odio, ac efficitur quam. Pellentesque lacinia odio quis orci#}
-{#            aliquam malesuada. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.#}
-{#            Proin arcu est, tincidunt in velit id, efficitur hendrerit urna. Nunc in justo a nisi mollis scelerisque non#}
-{#            vel magna. Pellentesque vel mauris congue, rhoncus purus feugiat, eleifend massa. Sed quis dui ut tellus#}
-{#            fringilla venenatis quis sed magna. Vestibulum at tortor sed dolor tincidunt tincidunt. Integer ullamcorper,#}
-{#            arcu non auctor tristique, risus nisl vehicula dui, aliquet sagittis tellus neque sed orci. Praesent id#}
-{#            pellentesque lacus.#}
-
-{#            Ut a nisl tincidunt, porttitor orci in, feugiat mi. Phasellus pharetra ac neque quis pulvinar. Etiam blandit#}
-{#            dignissim nibh ut hendrerit. Curabitur sed nisl mauris. Phasellus eget nulla vestibulum, consequat lorem eu,#}
-{#            semper urna. Suspendisse mauris felis, lacinia sit amet venenatis eleifend, ornare vel est. Vivamus ornare#}
-{#            enim in diam facilisis elementum.#}
-
-{#            Vivamus ante lacus, rhoncus non elit non, venenatis aliquam neque. Sed at justo commodo, laoreet urna sed,#}
-{#            luctus nisl. Ut at magna varius, mattis metus eu, tristique risus. Phasellus placerat dui ut molestie#}
-{#            lobortis. Nulla cursus eget ligula eget tincidunt. Fusce mattis turpis eros, non maximus eros pellentesque#}
-{#            id. Maecenas eleifend suscipit dui ac ullamcorper. Aliquam neque est, lobortis eu enim in, elementum rhoncus#}
-{#            est.#}
-
-{#            Aliquam sit amet fermentum arcu. In lobortis dolor a felis maximus porta. Maecenas congue convallis porta.#}
-{#            Praesent mattis, lacus et vehicula fermentum, turpis mauris posuere quam, et pretium enim velit sed sem.#}
-{#            Phasellus leo velit, tincidunt eget varius vitae, elementum ac sapien. Duis eu feugiat nibh. Nullam maximus,#}
-{#            mi nec vestibulum lobortis, est eros dignissim ex, in hendrerit eros felis eget lectus. Suspendisse nec#}
-{#            turpis libero. Cras purus purus, ultrices a iaculis nec, maximus nec dui. Suspendisse sodales eros eget mi#}
-{#            fermentum porttitor.#}
-
-{#            Quisque vitae eros nibh. Mauris scelerisque, erat ut dictum rhoncus, lectus sapien tincidunt urna, a varius#}
-{#            dui tellus eget libero. Morbi venenatis vulputate tincidunt. Sed sodales nibh hendrerit felis dictum#}
-{#            ultricies. Nullam eget urna eros. Quisque fermentum ligula nunc, ut mollis ex pharetra ut. Etiam tincidunt#}
-{#            pretium fringilla. Curabitur rutrum sapien ut ligula mattis commodo. Nunc nec tellus lobortis, sodales orci#}
-{#            et, pellentesque arcu. Quisque quam urna, dictum interdum pharetra eu, ullamcorper sed mauris. Sed#}
-{#            condimentum mollis augue et convallis. Integer blandit porta purus, vel euismod libero volutpat quis. Etiam#}
-{#            suscipit magna a nisl pretium varius.</p>#}
-{#        <div class="buttons">#}
-{#            <table class="table">#}
-{#                <caption style="text-align: center">Seanse w najbliższym czasie</caption>#}
-{#                <tr>#}
-{#                    <th>dziś</th>#}
-{#                    <th>jutro</th>#}
-{#                </tr>#}
-{#                <tr>#}
-{#                    <td>12:00,17:00</td>#}
-{#                    <td>14:00,18:00</td>#}
-{#                </tr>#}
-{#            </table>#}
-{#            <button class="buy_ticket_button">Kup bilety</button>#}
-{#        </div>#}
-{#    </div>#}
-
-{#</section>#}
 </div>
+<script>
+    // var x =document.getElementsByClassName("arrow").style.height;
+    //     x=document.getElementsByClassName("col-4").style.height;
+    var rightarrow = document.getElementsByClassName("arrow right");
+    var leftarrow = document.getElementsByClassName("arrow left");
+
+    function changeimg(x) {
+        if (x == "<") {
+            {% set temp = poster_path[8] %}
+            {% for i in 1..8 %}
+            {% set poster_path = poster_path|merge({(element): 'value'})
+                poster_path[i]=poster_path[i-1] %}
+            {% endfor %}
+            {% poster_path[0]=temp %}
+        } else {
+            {% set temp = poster_path[0] %}
+            {% for i in 0..7 %}
+            {% poster_path[i]=poster_path[i+1] %}
+            {% endfor %}
+            {% poster_path[8]=temp %}
+        }
+    }
+
+    rightarrow.addEventListener("click", changeimg(">"));
+    leftarrow.addEventListener("click", changeimg("<"));
+
+</script>
 </body>
