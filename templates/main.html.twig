@@ -14,22 +14,27 @@
 
 <body>
 <div class="jumbotron">
-    <div class="container-fluid">
+
+    <div class="container-xl">
         <div class="row">
-            <div class="col-4">
-                <button class="arrow left">
+            <div class="col-4 photo" >
+                <button class="arrow left" id="<">
                     <i class="arr lef"></i>
                 </button>
                 <img id="img 1" src="{{ poster_path[0] }}">
+                <div class = "title 1">{{ title[0] }}</div>
             </div>
-            <div class="col-4">
+            <div class="col-4 photo">
                 <img id="img 2" src="{{ poster_path[1] }}">
+                <div class = "title 2">{{ title[1] }}</div>
+
             </div>
-            <div class="col-4">
-                <button class="arrow right">
+            <div class="col-4 photo">
+                <button class="arrow right" id = ">">
                     <i class="arr rig"></i>
                 </button>
                 <img id="img 3" src="{{ poster_path[2] }}">
+                <div class = "title 3">{{ title[2] }}</div>
             </div>
 
         </div>
@@ -38,31 +43,52 @@
 
 
 </div>
-<script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+
+    $(function(){
+
+        var $header = $('#header');
+        var $footer = $('#footer');
+        var $content = $('#content');
+        var $window = $(window).on('resize', function(){
+            var height = $(this).height() - $header.height() + $footer.height();
+            $content.height(height);
+        }).trigger('resize'); //on page load
+
+    });
     // var x =document.getElementsByClassName("arrow").style.height;
     //     x=document.getElementsByClassName("col-4").style.height;
-    var rightarrow = document.getElementsByClassName("arrow right");
-    var leftarrow = document.getElementsByClassName("arrow left");
+    var rightarrow = document.getElementById(">").;
+    var leftarrow = document.getElementById("<");
+
+    $(document).ready(function() {
+
 
     function changeimg(x) {
-        if (x == "<") {
-            {% set temp = poster_path[8] %}
-            {% for i in 1..8 %}
-            {% set poster_path = poster_path|merge({(element): 'value'})
-                poster_path[i]=poster_path[i-1] %}
-            {% endfor %}
-            {% poster_path[0]=temp %}
-        } else {
-            {% set temp = poster_path[0] %}
-            {% for i in 0..7 %}
-            {% poster_path[i]=poster_path[i+1] %}
-            {% endfor %}
-            {% poster_path[8]=temp %}
-        }
+        {#if (x == "<") {#}
+        {#    {% set temp = poster_path[8] %}#}
+        {#    {% for i in 1..8 %}#}
+        {#    {% set poster_path = poster_path|merge({i: poster_path[i-1]}) %}#}
+        {#        #}{#poster_path[i]=poster_path[i-1]#}
+        {#    {% endfor %}#}
+        {#    {% set poster_path = poster_path|merge({0: temp}) %}#}
+        {#        /*poster_path[0]=temp */#}
+        {#} else {#}
+        {#    {% set temp = poster_path[0] %}#}
+        {#    {% for i in 0..7 %}#}
+        {#    {% set poster_path = poster_path|merge({i: poster_path[i+1]}) %}#}
+        {#        // poster_path[i]=poster_path[i+1]#}
+        {#    {% endfor %}#}
+        {#    {% set poster_path = poster_path|merge({0: temp}) %}#}
+        {#    // poster_path[8]=temp#}
+        {#}#}
+
+        this.style.color="orange";
+
     }
 
     rightarrow.addEventListener("click", changeimg(">"));
     leftarrow.addEventListener("click", changeimg("<"));
-
+    });
 </script>
 </body>
