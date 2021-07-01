@@ -9,14 +9,33 @@
     font-size: 25px;
 }
 
+#radio-buttons {
+    margin-left: 15%;
+    text-align: left;
+}
+
 .cart_inputs{
     margin-right: 7px;
     margin-left: 7px;
     margin-bottom: 15px;
 }
 
+.cart_last_inputs{
+    margin-right: 7px;
+    margin-left: 7px;
+    margin-bottom: 10px;
+}
+
+.radio-button{
+    text-align: left;
+}
+
 .btn {
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+form {
+    margin-bottom: -5px;
 }
 
