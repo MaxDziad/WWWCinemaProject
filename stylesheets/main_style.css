@@ -50,15 +50,13 @@ img{
     /*background: transparent;*/
     background-color:rgba(0, 0, 0, 0.2);
     border: none;
-    margin-top: 20% ;
-    height: 45px;
-
+    max-height: inherit;
 }
 .right{
-    right: 30px;
+    right: -0px;
 }
 .left{
-    left: 30px;
+    left: -0px;
 }
 .arr{
     border: solid black;
@@ -74,7 +72,7 @@ img{
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
 }
-.col-4{
-    padding-right: unset;
-    padding-left: unset;
-}
+/*.col-4{*/
+/*    padding-right: unset;*/
+/*    padding-left: unset;*/
+/*}*/
