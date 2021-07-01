@@ -36,6 +36,7 @@ caption{
 .buy_ticket_button{
     width: 20%;
 }
+
 .parent{
     width: min-content;
 }
@@ -72,4 +73,8 @@ img{
 .lef{
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+}
+.col-4{
+    padding-right: unset;
+    padding-left: unset;
 }
