@@ -5,46 +5,84 @@
 <center>
     <div class="container mb-5">
         <div class="row">
-        <div class="col-md-7">
-            <div class="card">
-                <div class="card-header">
-                    <b>DANE REZERWUJĄCEGO</b>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <b>DANE REZERWUJĄCEGO</b>
+                    </div>
+                    <div class="card-body">
+                        <form action="/cart" method="POST">
+                            <input class="cart_inputs" type="text" name="name" placeholder="Imię">
+                            <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko">
+                            <br>
+                            <input class="cart_inputs" type="text" name="address" placeholder="Ulica">
+                            <input class="cart_inputs" type="text" name="address_cd" placeholder="Nr domu/lokalu">
+                            <br>
+                            <input class="cart_inputs" type="text" name="postcode" placeholder="Kod pocztowy">
+                            <input class="cart_inputs" type="text" name="city" placeholder="Miasto">
+                            <br>
+                            <input class="cart_last_inputs" type="text" name="email" placeholder="E-mail">
+                            <input class="cart_last_inputs" type="text" name="phone_number" placeholder="Telefon">
+                        </form>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <form action="/cart" method="POST">
-                        <input class="cart_inputs" type="text" name="name" placeholder="Imię">
-                        <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko">
-                        <br>
-                        <input class="cart_inputs" type="text" name="address" placeholder="Ulica">
-                        <input class="cart_inputs" type="text" name="address_cd" placeholder="Nr domu/lokalu">
-                        <br>
-                        <input class="cart_inputs" type="text" name="postcode" placeholder="Kod pocztowy">
-                        <input class="cart_inputs" type="text" name="city" placeholder="Miasto">
-                        <br>
-                        <input class="cart_inputs" type="text" name="email" placeholder="E-mail">
-                        <input class="cart_inputs" type="text" name="phone_number" placeholder="Telefon">
-                        <br>
-                        <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
-                        <br>
-                        <input class="btn btn-success mx-2 btn-lg active" type="submit" value="ZAŁÓŻ KONTO">
-                        <div> <br> {{ komunikat }} </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <b>WYBRANE BILETY</b>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-header">
-                    <b>FORMA DOSTAWY</b>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <b>FORMA DOSTAWY</b>
+                    </div>
+                    <div class="card-body" id="radio-buttons">
+                        <form action="/cart" method="POST">
+                            <input class="radio-button" type="radio" id="collection" name="delivery" value="collection">
+                            <label for="collection">ODBIÓR OSOBISTY</label>
+                            <br>
+                            <input class="radio-button" type="radio" id="e-ticket" name="delivery" value="e-ticket">
+                            <label for="e-ticket">BILET ELEKTRONICZNY</label>
+                        </form>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <input type="radio" id="dewey" name="drone" value="dewey">
-                    <label for="dewey">ODBIÓR OSOBISTY</label>
-                    <input type="radio" id="dewey2" name="drone" value="dewey2">
-                    <label for="dewey2">BILET ELEKTRONICZNY</label>
-                    </form>
+            </div>
+            <div class="col-md-4">
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <b>FORMA PŁATNOŚCI</b>
+                    </div>
+                    <div class="card-body" id="radio-buttons">
+                        <form action="/cart" method="POST">
+                            <input class="radio-button" type="radio" id="by-collection" name="payment" value="by-collection">
+                            <label for="by-collection">PRZY ODBIORZE</label>
+                            <br>
+                            <input class="radio-button" type="radio" id="transfer" name="payment" value="transfer">
+                            <label for="transfer">PRZELEW</label>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <form action="/cart" method="POST">
+                            <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
+                            <input class="btn btn-success mx-2 btn-lg active" type="submit" value="REZERWUJ">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </center>
