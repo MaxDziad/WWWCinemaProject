@@ -24,6 +24,7 @@ if (isset($config) && is_array($config)) {
 else {
     exit("Nie znaleziono konfiguracji bazy danych.");
 }
+
 if (isset($_GET['logout'])) {
     unset($_SESSION['id']);
     unset($_SESSION['email']);
