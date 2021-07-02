@@ -1,11 +1,11 @@
 <?php
 
-$komunikat = '';
+$message = '';
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
 
     if ($_POST['login'] == '' || $_POST['password'] == '') {
-        $komunikat = "Pola nie mogą być puste.";
+        $message = "Pola nie mogą być puste.";
     }
     else {
         $stmt = $dbh->prepare("SELECT * FROM users WHERE email = :email");
@@ -16,13 +16,13 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
             if (password_verify($_POST['password'], $user['password'])) {
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['email'] = $user['email'];
-                $komunikat = "Zalogowano pomyślnie.";
+                $message = "Zalogowano pomyślnie.";
                 header('Location: /');
-            } else $komunikat = "Hasło niepoprawne.";
-        } else $komunikat = "Nie ma takiego użytkownika.";
+            } else $message = "Hasło niepoprawne.";
+        } else $message = "Nie ma takiego użytkownika.";
     }
 }
 
-echo $twig->render('login.html.twig', ['komunikat'=>$komunikat]);
+echo $twig->render('login.html.twig', ['message'=>$message]);
 
 ?>

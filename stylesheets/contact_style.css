@@ -3,3 +3,9 @@
     background-color: black;
     color: white;
 }
+
+.col-6 {
+    color: white;
+    padding-left: 3%;
+    padding-right: 3%;
+}
