@@ -12,7 +12,7 @@ img{
     bottom: 0px;
     text-align: center;
     color: silver;
-    background-color:rgba(0, 0, 0, 0.4);
+    background-color:rgba(86,86,86, 0.4);
     width: inherit;
     height: 50px ;
     font-size: 30px;
@@ -21,7 +21,7 @@ img{
 .arrow{
     font-weight: bolder;
     position: absolute;
-    background-color:rgba(0, 0, 0, 0.4);
+    background-color:rgba(86,86,86, 0.4);
     border: none;
     height: 563.94px;
 }

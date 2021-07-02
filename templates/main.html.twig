@@ -1,15 +1,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/stylesheets/main_style.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body>
@@ -17,24 +9,24 @@
 
     <div class="container-xl">
         <div class="row">
-            <div class="col-4 photo" >
+            <div class="col-4 photo">
                 <button class="arrow left" id="<">
                     <i class="arr lef"></i>
                 </button>
-                <img id="img 1" src="{{ poster_path[0] }}">
-                <div class = "title 1">{{ title[0] }}</div>
+                <img id="img1" src="{{ poster_path[0] }}">
+                <div class="title 1">{{ title[0] }}</div>
             </div>
             <div class="col-4 photo">
-                <img id="img 2" src="{{ poster_path[1] }}">
-                <div class = "title 2">{{ title[1] }}</div>
+                <img id="img2" src="{{ poster_path[1] }}">
+                <div class="title 2">{{ title[1] }}</div>
 
             </div>
             <div class="col-4 photo">
-                <button class="arrow right" id = ">">
+                <button class="arrow right" id=">">
                     <i class="arr rig"></i>
                 </button>
-                <img id="img 3" src="{{ poster_path[2] }}">
-                <div class = "title 3">{{ title[2] }}</div>
+                <img id="img3" src="{{ poster_path[2] }}">
+                <div class="title 3">{{ title[2] }}</div>
             </div>
 
         </div>
@@ -42,53 +34,77 @@
 </div>
 
 
-</div>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+<script>
+    let k = 1;
+    console.log(("img").concat(k.toString()));
 
-    $(function(){
+    const posters = [];
+    {% for i in 0..8 %}
+    posters[{{ i }}] = "{{ poster_path[i] }}";
+    {% endfor %}
 
-        var $header = $('#header');
-        var $footer = $('#footer');
-        var $content = $('#content');
-        var $window = $(window).on('resize', function(){
-            var height = $(this).height() - $header.height() + $footer.height();
-            $content.height(height);
-        }).trigger('resize'); //on page load
 
+
+    var next = document.getElementById(">");
+    var prev = document.getElementById("<");
+
+    $(document).ready(function () {
+
+
+        // function changeimg(x) {
+        //     if (x == ">") {
+        //         for (let j = 1; j <= 3; j++) {
+        //             let image = document.getElementById(("img").concat(j.toString()));
+        //             let currentindex = posters.findIndex(element=> element=image.src);
+        //             if (currentindex = !8) {
+        //                 image.src = posters[currentindex + 1];
+        //             } else {
+        //                 image.src = posters[0]
+        //             }
+        //         }
+        //         console.log("działa");
+        //     } else if (x == "<") {
+        //         for (let j = 1; j <= 3; j++) {
+        //             let image = document.getElementById(("img").concat(j.toString()));
+        //             let currentindex = posters.findIndex(element=> element=image.src);
+        //             if (currentindex = !0) {
+        //                 image.src = posters[currentindex - 1];
+        //             } else {
+        //                 image.src = posters[8]
+        //             }
+        //         }
+        //     }
+        //     else{
+        //     }
+        // }
+
+        next.onclick = function () {
+            for (let j = 1; j <= 3; j++) {
+                let image = document.getElementById(("img").concat(j.toString()));
+                let currentindex = posters.findIndex(element => element == image.src);
+                if (currentindex == 8) {
+                    image.src = posters[0]
+                } else {
+                    console.log(currentindex);
+                    image.src = posters[currentindex + 2];
+                }
+            }
+            console.log("działa");
+        }
+        prev.onclick = function () {
+            for (let j = 1; j <= 3; j++) {
+                let image = document.getElementById(("img").concat(j.toString()));
+                let currentindex = posters.findIndex(element => element == image.src);
+                if (currentindex == 0) {
+                    image.src = posters[8]
+                } else {
+                    image.src = posters[currentindex - 1];
+                }
+            }
+        }
+        // next.addEventListener("click", changeimg(">"));
+        // prev.addEventListener("click", changeimg("<"));
     });
-    // var x =document.getElementsByClassName("arrow").style.height;
-    //     x=document.getElementsByClassName("col-4").style.height;
-    var rightarrow = document.getElementById(">").;
-    var leftarrow = document.getElementById("<");
 
-    $(document).ready(function() {
-
-
-    function changeimg(x) {
-        {#if (x == "<") {#}
-        {#    {% set temp = poster_path[8] %}#}
-        {#    {% for i in 1..8 %}#}
-        {#    {% set poster_path = poster_path|merge({i: poster_path[i-1]}) %}#}
-        {#        #}{#poster_path[i]=poster_path[i-1]#}
-        {#    {% endfor %}#}
-        {#    {% set poster_path = poster_path|merge({0: temp}) %}#}
-        {#        /*poster_path[0]=temp */#}
-        {#} else {#}
-        {#    {% set temp = poster_path[0] %}#}
-        {#    {% for i in 0..7 %}#}
-        {#    {% set poster_path = poster_path|merge({i: poster_path[i+1]}) %}#}
-        {#        // poster_path[i]=poster_path[i+1]#}
-        {#    {% endfor %}#}
-        {#    {% set poster_path = poster_path|merge({0: temp}) %}#}
-        {#    // poster_path[8]=temp#}
-        {#}#}
-
-        this.style.color="orange";
-
-    }
-
-    rightarrow.addEventListener("click", changeimg(">"));
-    leftarrow.addEventListener("click", changeimg("<"));
-    });
 </script>
 </body>
