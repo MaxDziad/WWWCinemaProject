@@ -20,5 +20,10 @@
 }
 
 .btn {
-    margin-top: 30px;
+    margin-top: 15px;
+    margin-bottom: 16px;
+}
+
+form {
+    margin-bottom: 0;
 }

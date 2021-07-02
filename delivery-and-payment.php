@@ -39,7 +39,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
     $postcode = '';
     $city = '';
     $email = '';
-    $phonenumber = '';
+    $phone_number = '';
 
     echo $twig->render('cart3.html.twig', [
         'name' => $name,
