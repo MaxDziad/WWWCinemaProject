@@ -9,12 +9,12 @@
     font-size: 25px;
 }
 
-#login_input_email {
+#login-input-email {
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-#login_input_password {
+#login-input-password {
     margin-top: 15px;
     margin-bottom: 20px;
 }

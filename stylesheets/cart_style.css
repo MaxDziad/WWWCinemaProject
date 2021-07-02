@@ -9,6 +9,12 @@
     font-size: 25px;
 }
 
+.cart-buttons {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 40%;
+}
+
 .selection-buttons {
     margin-top: 25px;
     margin-bottom: 25px;
