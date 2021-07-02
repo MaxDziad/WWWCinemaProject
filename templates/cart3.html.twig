@@ -12,17 +12,17 @@
                     </div>
                     <div class="card-body">
                         <form action="/confirmation" method="POST" style="margin-bottom: -13px;">
-                            <input class="cart_inputs" type="text" name="name" placeholder="Imię">
-                            <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko">
+                            <input class="cart_inputs" type="text" name="name" placeholder="Imię" value="{{ name }}">
+                            <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}">
                             <br>
-                            <input class="cart_inputs" type="text" name="address" placeholder="Ulica">
-                            <input class="cart_inputs" type="text" name="address_cd" placeholder="Nr domu/lokalu">
+                            <input class="cart_inputs" type="text" name="address" placeholder="Ulica" value="{{ address }}">
+                            <input class="cart_inputs" type="text" name="address_cd" placeholder="Nr domu/lokalu" value="{{ address_cd }}">
                             <br>
-                            <input class="cart_inputs" type="text" name="postcode" placeholder="Kod pocztowy">
-                            <input class="cart_inputs" type="text" name="city" placeholder="Miasto">
+                            <input class="cart_inputs" type="text" name="postcode" placeholder="Kod pocztowy" value="{{ postcode }}">
+                            <input class="cart_inputs" type="text" name="city" placeholder="Miasto" value="{{ city }}">
                             <br>
-                            <input class="cart_inputs"  type="text" name="email" placeholder="E-mail">
-                            <input class="cart_inputs" type="text" name="phone_number" placeholder="Telefon">
+                            <input class="cart_inputs" type="text" name="email" placeholder="E-mail" value="{{ email }}">
+                            <input class="cart_inputs" type="text" name="phone_number" placeholder="Telefon" value="{{ phone_number }}">
                         </form>
                     </div>
                 </div>
@@ -78,8 +78,8 @@
                 <div class="card mt-3">
                     <div class="card-body card-booking">
                         <form action="/confirmation" method="POST">
-                                <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
-                                <input class="btn btn-success mx-2 btn-lg active" id="booking-button" type="submit" value="REZERWUJ">
+                            <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
+                            <input class="btn btn-success mx-2 btn-lg active" id="booking-button" type="submit" value="REZERWUJ">
                         </form>
                     </div>
                 </div>
