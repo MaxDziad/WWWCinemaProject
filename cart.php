@@ -1,8 +1,11 @@
 <?php
 
+$next_step_cart_link = '';
+
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
-    header('Location: /cart/delivery-and-payment');
+    $next_step_cart_link = "/cart/delivery-and-payment";
 } else {
-    echo $twig->render('cart2.html.twig', []);
+    $next_step_cart_link = "/cart/selection";
 }
 
+echo $twig->render('cart.html.twig', ['next_step_cart_link'=>$next_step_cart_link]);

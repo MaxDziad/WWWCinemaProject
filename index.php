@@ -55,11 +55,11 @@ if ((isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $pages_for
     } else {
         print '<p style="font-weight: bold; text-align: center; margin-top: 50px;"> Plik ' . $_GET['page'] . '.php nie istnieje.</p>';
     }
-} /*elseif (isset($_GET['page']) && !isset($_SESSION['id']) && in_array($_GET['page'], $pages_for_logged)) {
+} elseif (isset($_GET['page']) && !isset($_SESSION['id']) && in_array($_GET['page'], $pages_for_logged)) {
     print '<p style="font-weight: bold; text-align: center; margin-top: 50px;">Musisz być zalogowany, aby mieć dostęp do tej strony.</p>';
 } elseif (isset($_GET['page']) && isset($_SESSION['id']) && in_array($_GET['page'], $pages_for_unlogged)) {
-    print '<p style="font-weight: bold; text-align: center; margin-top: 50px;">Jesteś już zalogowany.</p>';
-}*/ else {
+    print '<p style="font-weight: bold; text-align: center; margin-top: 50px;">Jesteś zalogowany, więc nie masz dostępu do tej strony.</p>';
+} else {
     include('main.php');
 }
 

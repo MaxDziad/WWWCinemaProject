@@ -14,8 +14,6 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
     $new_password = $_POST['new_password'];
     $new_password_confirm = $_POST['new_password_confirm'];
 
-    $ip = $_SERVER['REMOTE_ADDR'];
-
     $recaptcha = new \ReCaptcha\ReCaptcha('6LcrreYUAAAAALTdoToeer_H4NZ1ECK4U76g0huL');
     $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 

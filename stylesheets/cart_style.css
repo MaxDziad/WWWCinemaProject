@@ -40,6 +40,12 @@
     font-weight: bold;
 }
 
+th {
+    background-color: black;
+    color: white;
+}
+
+
 form {
     margin-bottom: -3px;
 }
