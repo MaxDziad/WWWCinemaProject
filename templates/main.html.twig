@@ -9,24 +9,21 @@
 
     <div class="container-xl">
         <div class="row">
-            <div class="col-4 photo">
+            <div class="col-4 photo" >
                 <button class="arrow left" id="<">
                     <i class="arr lef"></i>
                 </button>
-                <img id="img1" src="{{ poster_path[0] }}">
-                <div class="title 1">{{ title[0] }}</div>
+                <a href="https://s123.labagh.pl/movies/show/{{ id[0] }}"><img id="img1" src="{{ poster_path[0] }}" ></a>
             </div>
             <div class="col-4 photo">
-                <img id="img2" src="{{ poster_path[1] }}">
-                <div class="title 2">{{ title[1] }}</div>
+                <a href="https://s123.labagh.pl/movies/show/{{ id[1] }}"><img id="img2" src="{{ poster_path[1] }}" ></a>
 
             </div>
             <div class="col-4 photo">
                 <button class="arrow right" id=">">
                     <i class="arr rig"></i>
                 </button>
-                <img id="img3" src="{{ poster_path[2] }}">
-                <div class="title 3">{{ title[2] }}</div>
+                <a href="https://s123.labagh.pl/movies/show/{{ id[2] }}"><img id="img3" src="{{ poster_path[2] }}" ></a>
             </div>
 
         </div>
@@ -39,8 +36,10 @@
     console.log(("img").concat(k.toString()));
 
     const posters = [];
+    const id = [];
     {% for i in 0..8 %}
     posters[{{ i }}] = "{{ poster_path[i] }}";
+    id[{{ i }}] = "{{ id[i] }}";
     {% endfor %}
 
 
@@ -81,17 +80,16 @@
         next.onclick = function () {
             for (let j = 1; j <= 3; j++) {
                 let image = document.getElementById(("img").concat(j.toString()));
-                console.log((image.src).substring(22));
                 let currentindex = posters.findIndex(element => element == (image.src).substring(22));
-                console.log(currentindex);
                 if (currentindex == 8) {
                     image.src = posters[0]
+                    image.parent.href = ("https://s123.labagh.pl/movies/show/").concat(id[0]);
                 } else {
                     console.log(currentindex);
                     image.src = posters[currentindex + 1];
+                    image.parent.href = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex + 1]);
                 }
             }
-            console.log("działa");
         }
         prev.onclick = function () {
             for (let j = 1; j <= 3; j++) {
@@ -99,9 +97,12 @@
                 let currentindex = posters.findIndex(element => element == (image.src).substring(22));
                 if (currentindex == 0) {
                     image.src = posters[8]
+                    image.parent.href = ("https://s123.labagh.pl/movies/show/").concat(id[8]);
                 } else {
                     image.src = posters[currentindex - 1];
+                    image.parent.href = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex - 1]);
                 }
+                console.log(("https://s123.labagh.pl/movies/show/").concat(id[currentindex - 1]));
             }
         }
         // next.addEventListener("click", changeimg(">"));
