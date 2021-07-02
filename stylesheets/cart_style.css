@@ -19,7 +19,6 @@
     margin-right: 7px;
     margin-left: 7px;
     margin-bottom: 15px;
-    width: 35%;
 }
 
 .card-radio-buttons{
@@ -45,7 +44,6 @@ th {
     background-color: black;
     color: white;
 }
-
 
 form {
     margin-bottom: -3px;
