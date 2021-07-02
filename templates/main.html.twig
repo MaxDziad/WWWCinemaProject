@@ -81,12 +81,14 @@
         next.onclick = function () {
             for (let j = 1; j <= 3; j++) {
                 let image = document.getElementById(("img").concat(j.toString()));
-                let currentindex = posters.findIndex(element => element == image.src);
+                console.log((image.src).substring(22));
+                let currentindex = posters.findIndex(element => element == (image.src).substring(22));
+                console.log(currentindex);
                 if (currentindex == 8) {
                     image.src = posters[0]
                 } else {
                     console.log(currentindex);
-                    image.src = posters[currentindex + 2];
+                    image.src = posters[currentindex + 1];
                 }
             }
             console.log("działa");
@@ -94,7 +96,7 @@
         prev.onclick = function () {
             for (let j = 1; j <= 3; j++) {
                 let image = document.getElementById(("img").concat(j.toString()));
-                let currentindex = posters.findIndex(element => element == image.src);
+                let currentindex = posters.findIndex(element => element == (image.src).substring(22));
                 if (currentindex == 0) {
                     image.src = posters[8]
                 } else {
