@@ -55,5 +55,5 @@ img{
 }
 .photo{}
 .col-4:hover{
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
