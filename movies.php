@@ -56,9 +56,11 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
 
 // Search for given movie
 else if(isset($_POST['search'])){
+    echo $twig->render('movies_return.html.twig', []);
+
     $search = htmlspecialchars($_POST['search'], ENT_QUOTES | ENT_HTML401);
     $search = "%" . $search . "%";
-    $stmt = $dbh->prepare("SELECT * FROM movies WHERE title LIKE :title");
+    $stmt = $dbh->prepare("SELECT * FROM movies WHERE title LIKE :title ORDER BY available_date DESC");
     $stmt -> execute([':title' => $search]);
 
     if($stmt->columnCount() > 0) {
@@ -94,6 +96,8 @@ else if(isset($_POST['search'])){
 
 // Showing all the movies when id is not given
 else {
+    echo $twig->render('movie_searching.html.twig', []);
+
     $stmt = $dbh->prepare("SELECT * FROM movies ORDER BY available_date DESC");
     $stmt->execute();
 
