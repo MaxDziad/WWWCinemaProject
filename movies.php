@@ -19,8 +19,19 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
         $poster_path = htmlspecialchars($row['poster_path'], ENT_QUOTES | ENT_HTML401);
         $available_date = $row['available_date'];
         $expiration_date = $row['expiration_date'];
-        $ticket_price = intval($row['ticket_price']);
+        $movie_hours = htmlspecialchars($row['movie_hours'], ENT_QUOTES | ENT_HTML401);
         $trailer_URL = htmlspecialchars($row['trailer_URL']);
+        $current_date = date("Y-m-d");
+
+        $movie_hours = explode(',', $movie_hours);
+        $movie_dates = [];
+
+        $date = $current_date;
+//        while($date <= $expiration_date){
+//            array_push($movie_dates, $date);
+//            $date = date_modify($date, '+1 day');
+//        }
+
 
         echo $twig->render('movie_show.html.twig', [
             'id' => $id,
@@ -33,8 +44,9 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
             'poster_path' => $poster_path,
             'available_date' => $available_date,
             'expiration_date' => $expiration_date,
-            'ticket_price' => $ticket_price,
-            'trailer_URL' => $trailer_URL
+            'movie_hours' => $movie_hours,
+            'trailer_URL' => $trailer_URL,
+            'movie_dates' => $movie_dates
         ]);
     }
     else{
