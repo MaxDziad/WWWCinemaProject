@@ -2,7 +2,7 @@
 
 echo $twig->render('movies_head.html.twig', []);
 
-// Movie detailed
+// Movie details
 if (isset($_GET['show']) && intval($_GET['show']) > 0) {
     $id = intval($_GET['show']);
     $stmt = $dbh->prepare("SELECT * FROM movies WHERE id = :id");
@@ -21,17 +21,8 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
         $expiration_date = $row['expiration_date'];
         $movie_hours = htmlspecialchars($row['movie_hours'], ENT_QUOTES | ENT_HTML401);
         $trailer_URL = htmlspecialchars($row['trailer_URL']);
-        $current_date = date("Y-m-d");
 
         $movie_hours = explode(',', $movie_hours);
-        $movie_dates = [];
-
-        $date = $current_date;
-//        while($date <= $expiration_date){
-//            array_push($movie_dates, $date);
-//            $date = date_modify($date, '+1 day');
-//        }
-
 
         echo $twig->render('movie_show.html.twig', [
             'id' => $id,
@@ -46,7 +37,6 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
             'expiration_date' => $expiration_date,
             'movie_hours' => $movie_hours,
             'trailer_URL' => $trailer_URL,
-            'movie_dates' => $movie_dates
         ]);
     }
     else{

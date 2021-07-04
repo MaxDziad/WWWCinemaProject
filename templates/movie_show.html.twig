@@ -5,25 +5,24 @@
             <p class="modal_close">&times;</p>
         </div>
         <div class="row">
-            <div class="col-5">
+            <div class="col-md-5">
                 <div class="container ml-3 mt-5">
                     <img class="med_img" src="{{ poster_path }}" alt="">
                 </div>
             </div>
             <span class="form-group col-md mr-4 mt-5" style="font-style: oblique">
                 <label for="movieDate">Wybierz datę seansu:</label>
-                <select class="form-control" id="movieDate">
-                    {% for day in movie_dates %}
-                        <option>day</option>
-                    {% endfor %}
-                </select>
                 <br>
+                <input onkeyup="getTicketsNumber()" type="date" id="movieDate" name="trip-start"  max="{{ expiration_date }}">
+                <br><br>
                 <label for="movieHour">Wybierz godzinę seansu:</label>
-                <select class="form-control" id="movieHour">
+                <select class="form-control" id="movieHour" onchange="getTicketsNumber()">
                   {% for hour in movie_hours %}
-                      <option>hour</option>
+                      <option>{{ hour }}:00</option>
                   {% endfor %}
                 </select>
+                <br><br>
+                <button id="continue" class="btn btn-success mx-auto btn-lg" role="button" aria-pressed="true">Kontynuuj</button>
             </span>
         </div>
     </span>
@@ -33,10 +32,10 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-5">
+                <div class="col-md-5">
                     <img class="big_img" src="{{ poster_path }}" alt="">
                 </div>
-                <span class="col" style="color: white;">
+                <span class="col-md" style="color: white;">
                     <button id="reservationButton" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">REZERWUJ BILET</button>
                     <a href="/movies" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">POWRÓT</a>
                     <br><br>
@@ -78,6 +77,14 @@
 </div>
 
 <script>
+    // Get current date
+    var dateString = new Date().toISOString();
+    dateString = dateString.substr(0,10);
+
+    var movieDate = document.getElementById("movieDate");
+    movieDate.setAttribute("value", dateString);
+    movieDate.setAttribute("min", dateString);
+
     // Get the modal
     var modal = document.getElementById("reservationModal");
 
