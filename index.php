@@ -9,6 +9,10 @@ include("config.inc.php");
 
 session_start();
 
+$_SESSION['cart'] = array();
+array_push($_SESSION['cart'], "product");
+$_SESSION['cart'][] = "product2";
+
 // Database connection, commented cause of errors
 
 if (isset($config) && is_array($config)) {

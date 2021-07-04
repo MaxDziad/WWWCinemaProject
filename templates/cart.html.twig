@@ -10,7 +10,7 @@
                     <b>KOSZYK</b>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="cart-table">
                         <thead>
                             <tr>
                                 <th scope="col">Lp.</th>
@@ -21,7 +21,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                         </tbody>
                     </table>
                     <a href="/movies" class="cart-buttons btn btn-success mx-2 btn-lg" role="button">POWRÓT</a>
@@ -31,3 +30,33 @@
         </div>
     </div>
 </center>
+
+<script>
+    $(document).ready(function(){
+        var cart = {{ cart_php|json_encode|raw }};
+        let length = cart.length;
+
+        var cart_table = document.getElementById("cart-table");
+        var cart_table_tbody = cart_table.getElementsByTagName('tbody')[0];
+
+        for (let i = 0; i < length; i++) {
+            var row = document.createElement('tr');
+            cart_table_tbody.appendChild(row);
+            var ordinal = document.createElement('td');
+            var title = document.createElement('td');
+            var date = document.createElement('td');
+            var time = document.createElement('td');
+            var amount = document.createElement('td');
+            row.appendChild(ordinal);
+            row.appendChild(title);
+            row.appendChild(date);
+            row.appendChild(time);
+            row.appendChild(amount);
+            ordinal.innerHTML = i;
+            title.innerHTML = cart[i];
+            date.innerHTML = cart[i];
+            time.innerHTML = cart[i];
+            amount.innerHTML = cart[i];
+        }
+    });
+</script>
