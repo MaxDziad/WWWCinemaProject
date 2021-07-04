@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="/stylesheets/cart_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <center>
@@ -17,7 +18,7 @@
                                 <th scope="col">TYTUŁ</th>
                                 <th scope="col">DATA</th>
                                 <th scope="col">GODZINA</th>
-                                <th scope="col">ILOŚĆ</th>
+                                <th scope="col">USUŃ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,10 +54,18 @@
             row.appendChild(time);
             row.appendChild(amount);
             ordinal.innerHTML = i + 1;
-            title.innerHTML = cart[i];
-            date.innerHTML = cart[i];
-            time.innerHTML = cart[i];
-            amount.innerHTML = cart[i];
+            title.innerHTML = cart[i]['title'];
+            date.innerHTML = cart[i]['date'];
+            time.innerHTML = cart[i]['time'];
+            var button = document.createElement('a');
+            amount.appendChild(button);
+            button.className = "btn btn-sm";
+            button.style = "color: white;";
+            button.href = "https://google.com";
+            var trash = document.createElement('i');
+            button.appendChild(trash);
+            trash.className = "fa fa-trash";
+
         }
     });
 </script>

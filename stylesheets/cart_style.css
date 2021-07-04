@@ -50,6 +50,7 @@
 th, td {
     background-color: black;
     color: white;
+    text-align: center;
 }
 
 form {
