@@ -21,7 +21,9 @@ img{
 .arrow{
     font-weight: bolder;
     position: absolute;
-    background-color:rgba(86,86,86, 0.4);
+    background-color:rgba(86,86,86, 0.4
+
+    );
     border: none;
     height: 563.94px;
 }
