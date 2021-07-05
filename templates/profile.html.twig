@@ -32,17 +32,87 @@
         </div>
 
 
-        <div class="col-9">
-            <div class="card" id="card-content">
-                <div class="card-header">
-                    Usuń konto
-                </div>
-                <div class="card-text my-3 mx-3">
-
+        {% set chosen_card = 'tickets' %}
+        {% if chosen_card == 'tickets' %}
+            <div class="col-9">
+                <div class="card" id="card-content">
+                    <div class="card-header">
+                        Moje bilety
+                    </div>
+                    <div class="card-text my-3 mx-3">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>
+                                    <a>Podaj stare hasło:</a>
+                                </td>
+                                <td colspan="2">
+                                    <input type="text" class="old-pass" method>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a>Wybierz nowe hasło:</a>
+                                </td>
+                                <td colspan="2">
+                                    <input type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                            <td>
+                                <a>Powtórz nowe hasło:</a>
+                            </td>
+                            <td colspan="2">
+                                <input type="text">
+                            </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td><button>Potwierdź</button></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-        </div>
+        {% elseif chosen_card == 'account_info' %}
+            <div class="col-9">
+                <div class="card" id="card-content">
+                    <div class="card-header">
+                        Zmień dane konta
+                    </div>
+                    <div class="card-text my-3 mx-3">
+                        gjknljkgchjvbkjcghvjkb
+                    </div>
+                </div>
+            </div>
+
+        {% elseif chosen_card == 'private_info' %}
+            <div class="col-9">
+                <div class="card" id="card-content">
+                    <div class="card-header">
+                        Zmień dane konta
+                    </div>
+                    <div class="card-text my-3 mx-3">
+                        gjknljkgchjvbkjcghvjkb
+                    </div>
+                </div>
+            </div>
+        {% elseif chosen_card == 'delete_acc' %}
+            <div class="col-9">
+                <div class="card" id="card-content">
+                    <div class="card-header">
+                        Zmień dane konta
+                    </div>
+                    <div class="card-text my-3 mx-3">
+                        gjknljkgchjvbkjcghvjkb
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            {% set chosen_card = 'tickets' %}
+        {% endif %}
+
     </div>
 </div>
 

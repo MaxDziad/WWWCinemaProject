@@ -1,3 +1,10 @@
 .card-header{
     text-align: center;
 }
+table{
+    table-layout: fixed;
+    width: 99%;
+}
+td{
+    width: 33%;
+}
