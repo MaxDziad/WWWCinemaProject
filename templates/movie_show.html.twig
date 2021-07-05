@@ -4,18 +4,18 @@
             <p class="modal_title">{{ title }}</p>
             <p class="modal_close">&times;</p>
         </div>
-        <div class="row">
-            <div class="col-md-5">
+        <div class="row align-items-start">
+            <div class="col-5">
                 <div class="container ml-3 mt-5">
                     <img class="med_img" src="{{ poster_path }}" alt="">
                 </div>
             </div>
-            <div class="form-group col-md mr-4 mt-5" style="font-style: oblique">
+            <div class="form-group col mr-4 mt-5" style="font-style: oblique">
                 <form action="/cart" method="POST">
                     <input type="hidden" name="movieTitle" value="{{title}}" />
                     <label for="movieDate">Wybierz datę seansu:</label>
                     <br>
-                    <input type="date" id="movieDate" name="movieDate"  max="{{ expiration_date }}">
+                    <input type="date" id="movieDate" name="movieDate"  max="{{ expiration_date }}" style="width: 100%">
                     <br><br>
                     <label for="movieHour">Wybierz godzinę seansu:</label>
                     <select class="form-control" id="movieHour" name="movieHour">
@@ -23,8 +23,8 @@
                           <option>{{ hour }}:00</option>
                       {% endfor %}
                     </select>
-                    <br><br>
-                    <input name="continue" value="Kontynuuj" class="btn btn-success mx-auto btn-lg" role="button" type="submit" aria-pressed="true">
+                    <br><br><br>
+                    <input name="continue" value="Dodaj do koszyka" class="btn btn-success btn-lg btn-block" role="button" type="submit" aria-pressed="true">
                 </form>
             </div>
         </div>
@@ -39,9 +39,7 @@
                     <img class="big_img" src="{{ poster_path }}" alt="">
                 </div>
                 <span class="col-md" style="color: white;">
-                    <button id="reservationButton" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">REZERWUJ BILET</button>
-                    <a href="/movies" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">POWRÓT</a>
-                    <br><br>
+                    <br>
                     <span class="card-title" style="font-family: Impact; font-size: 40px;">{{ title }}</span>
                     <br><br>
                     <b>Opis:</b> {{ detailed_description }}
@@ -57,6 +55,11 @@
                     <b>Premiera:</b> {{ available_date }}
                     <br>
                     <b>Data wygaśnięcia:</b> {{ expiration_date }}
+                    <br><br>
+                    <div class="absolute_buttons">
+                        <button id="reservationButton" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">REZERWUJ BILET</button>
+                        <a href="/movies" class="btn btn-success mx-2 btn-lg float-right" role="button" aria-pressed="true">POWRÓT</a>
+                    </div>
                 </span>
             </div>
         </div>

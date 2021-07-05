@@ -28,6 +28,12 @@
     color: white;
 }
 
+.absolute_buttons {
+    position: absolute;
+    bottom: 0;
+    right: 10;
+}
+
 .modal {
     position: fixed;
     top: 0;
@@ -42,13 +48,14 @@
 }
 
 .modal-content {
-    width: 50%;
-    height: 70%;
+
+    width: 600px;
+    height: 500px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: black;
-    border: 3px solid #2db94d;
+    border: 3px solid white;
 }
 
 .modal-header {
