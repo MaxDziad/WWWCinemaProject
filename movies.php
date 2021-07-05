@@ -10,8 +10,8 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if (isset($row['id'])) {
 
-        $title = htmlspecialchars($row['title'], ENT_QUOTES | ENT_HTML401);
-        $detailed_description = htmlspecialchars($row['detailed_description'], ENT_QUOTES | ENT_HTML401);
+        $title = html_entity_decode($row['title'], ENT_QUOTES | ENT_HTML401);
+        $detailed_description = html_entity_decode($row['detailed_description'], ENT_QUOTES | ENT_HTML401);
         $genre = htmlspecialchars($row['genre'], ENT_QUOTES | ENT_HTML401);
         $duration = intval($row['duration']);
         $production = htmlspecialchars($row['production'], ENT_QUOTES | ENT_HTML401);
@@ -56,8 +56,8 @@ else if(isset($_POST['search'])){
     if($stmt->columnCount() > 0) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $id = intval($row['id']);
-            $title = htmlspecialchars($row['title'], ENT_QUOTES | ENT_HTML401);
-            $short_description = htmlspecialchars($row['short_description'], ENT_QUOTES | ENT_HTML401);
+            $title = html_entity_decode($row['title'], ENT_QUOTES | ENT_HTML401);
+            $short_description = html_entity_decode($row['short_description'], ENT_QUOTES | ENT_HTML401);
             $genre = htmlspecialchars($row['genre'], ENT_QUOTES | ENT_HTML401);
             $duration = intval($row['duration']);
             $production = htmlspecialchars($row['production'], ENT_QUOTES | ENT_HTML401);
@@ -93,8 +93,8 @@ else {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $id = intval($row['id']);
-        $title = htmlspecialchars($row['title'], ENT_QUOTES | ENT_HTML401);
-        $short_description = htmlspecialchars($row['short_description'], ENT_QUOTES | ENT_HTML401);
+        $title = html_entity_decode($row['title'], ENT_QUOTES | ENT_HTML401);
+        $short_description = html_entity_decode($row['short_description'], ENT_QUOTES | ENT_HTML401);
         $genre = htmlspecialchars($row['genre'], ENT_QUOTES | ENT_HTML401);
         $duration = intval($row['duration']);
         $production = htmlspecialchars($row['production'], ENT_QUOTES | ENT_HTML401);

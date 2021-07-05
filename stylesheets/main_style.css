@@ -52,8 +52,8 @@ img{
     -webkit-transform: rotate(135deg);
 }
 .col-4{
-    padding-right: unset;
-    padding-left: unset;
+    /*padding-right: unset;*/
+    /*padding-left: unset;*/
     transform: scale(1);
     transition: transform .5s;
 }

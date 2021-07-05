@@ -10,14 +10,14 @@
 
         <div class="col-4">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header ">
                     Moje konto
                 </div>
                 <ul class="list-group list-group-flush" id="choose-card">
-                    <button class="list-group-item" id = "tickets">Moje bilety</button>
-                    <button class="list-group-item" id = "acc_info">Zmień hasło</button>
-                    <button class="list-group-item" id = "prvt_info">Zmień dane osobowe</button>
-                    <button class="list-group-item" id = "del_acc">Usuń konto</button>
+                    <button class="list-group-item" id="tickets">Moje bilety</button>
+                    <button class="list-group-item" id="acc_info">Zmień hasło</button>
+                    <button class="list-group-item" id="prvt_info">Zmień dane osobowe</button>
+                    <button class="list-group-item" id="del_acc">Usuń konto</button>
                 </ul>
             </div>
         </div>
@@ -30,13 +30,14 @@
                     <div class="card-header">
                         Zmień hasło
                     </div>
-                    <div class="card-body">
+                    <div class="card-body mx-auto">
                         <form action="/change_passwd" method="POST" class="">
                             <input id="chng-pswd-old" type="text" class="old-pass line" placeholder="Stare hasło:">
                             <br>
                             <input id="chng-pswd-new" type="text" class="new-pass line" placeholder="Nowe hasło:">
                             <br>
-                            <input id="chng-pswd-rpt" type="text" class="rep-pass line" placeholder="Powtórz nowe hasło:">
+                            <input id="chng-pswd-rpt" type="text" class="rep-pass line"
+                                   placeholder="Powtórz nowe hasło:">
                             <br>
                             <input type="submit" class="btn">
                         </form>
@@ -86,12 +87,34 @@
 </div>
 
 <script>
-    function choose_card(x){
-        {% set chosen_card = x %}
+
+    console.log("dfghj");
+
+    function choose_tickets() {
+        {% set chosen_card = 'tickets' %}
     }
 
-    var panel = document.getElementById("choose-card");
-    panel.addEventListener("click", choose_card(panel.id));
+    function choose_acc(){
+        {% set chosen_card = 'acc_info' %}
+    }
+
+    function choose_prvt(){
+        {% set chosen_card = 'prvt_info' %}
+        console.log("afs");
+    }
+
+    function choose_del(){
+        {% set chosen_card = 'del_acc' %}
+    }
+
+    document.getElementById("tickets").addEventListener("click", choose_tickets());
+
+    document.getElementById("acc_info").addEventListener("click", choose_acc());
+
+    document.getElementById("prvt_info").addEventListener("click", choose_prvt());
+
+    document.getElementById("del_acc").addEventListener("click", choose_del());
+
 </script>
 
 </body>
