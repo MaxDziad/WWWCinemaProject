@@ -32,6 +32,7 @@ else {
 if (isset($_GET['logout'])) {
     unset($_SESSION['id']);
     unset($_SESSION['email']);
+    unset($_GET['logout']);
 }
 
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
@@ -49,7 +50,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 // Render index.html
 echo $twig->render('index.html.twig', ['login_link'=>$login_link, 'login_button'=>$login_button, 'profile_link'=> $profile_link, 'profile_button'=>$profile_button]);
 
-$pages_for_all = ['main', 'movies', 'movie_details', 'cart', 'hall_places', 'contact', 'delivery-and-payment', 'remove-ticket'];
+$pages_for_all = ['main', 'movies', 'cart', 'hall_places', 'contact', 'delivery-and-payment'];
 $pages_for_logged = ['profile'];
 $pages_for_unlogged = ['login', 'registration', 'selection'];
 

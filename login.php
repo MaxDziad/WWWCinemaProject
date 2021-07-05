@@ -24,4 +24,3 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
 
 echo $twig->render('login.html.twig', ['message'=>$message]);
 
-?>

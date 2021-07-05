@@ -61,5 +61,3 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
 }
 
 echo $twig->render('registration.html.twig', ['message'=>$message]);
-
-?>

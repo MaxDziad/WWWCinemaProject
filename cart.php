@@ -1,7 +1,5 @@
 <?php
 
-$next_step_cart_link = '';
-
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
     $next_step_cart_link = "/cart/delivery-and-payment";
 } else {
@@ -21,10 +19,11 @@ if (isset($_POST['movieDate']) && isset($_POST['movieHour'])){
     array_push($_SESSION['cart'], $ticket);
 }
 
-if (isset($_GET['remove']) && intval($_GET['remove'])) {
+if (isset($_GET['remove']) && intval($_GET['remove']) >= 0) {
     $id = intval($_GET['remove']);
     unset($_SESSION["cart"][$id]);
+    unset($_GET['remove']);
     header('Location: /cart');
 }
 
-echo $twig->render('cart.html.twig', ['cart_php'=> $_SESSION['cart'], 'next_step_cart_link'=>$next_step_cart_link]);
+echo $twig->render('cart.html.twig', ['cart_php' => $_SESSION['cart'], 'next_step_cart_link' => $next_step_cart_link]);
