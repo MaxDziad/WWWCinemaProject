@@ -9,16 +9,22 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 }
 
 if (isset($_POST['movieDate']) && isset($_POST['movieHour'])){
+    $movieTitle = $_POST['movieTitle'];
     $movieDate = $_POST['movieDate'];
     $movieHour = $_POST['movieHour'];
-    $movieTitle = $_POST['movieTitle'];
 
-    $product = array(
+    $ticket = array(
         'title' => $movieTitle,
         'date' => $movieDate,
         'time' => $movieHour,
     );
-    array_push($_SESSION['cart'], $product);
+    array_push($_SESSION['cart'], $ticket);
+}
+
+if (isset($_GET['remove']) && intval($_GET['remove'])) {
+    $id = intval($_GET['remove']);
+    unset($_SESSION["cart"][$id]);
+    header('Location: /cart');
 }
 
 echo $twig->render('cart.html.twig', ['cart_php'=> $_SESSION['cart'], 'next_step_cart_link'=>$next_step_cart_link]);

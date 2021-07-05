@@ -16,7 +16,6 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
             if (password_verify($_POST['password'], $user['password'])) {
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['email'] = $user['email'];
-                $message = "Zalogowano pomyślnie.";
                 header('Location: /');
             } else $message = "Hasło niepoprawne.";
         } else $message = "Nie ma takiego użytkownika.";

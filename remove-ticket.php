@@ -1,10 +1,11 @@
 <?php
 
-if (isset($_GET['code'])){
-    foreach($_SESSION["cart"] as $k => $v) {
-        if ($_GET["code"] == $k)
-            unset($_SESSION["cart"][$k]);
+if (isset($_GET['remove'])){
+    foreach ($_SESSION["cart"] as $key => $value) {
+        if ($_GET["remove"] === $key) {
+            unset($_SESSION["cart"][$key]);
+        }
     }
+    header('Location: /cart');
 }
 
-header('Location: /cart');
