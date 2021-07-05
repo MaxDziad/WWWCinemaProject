@@ -1,7 +1,6 @@
 <?php
 
 
-// Showing all the movies when id is not given
 $stmt = $dbh->prepare("SELECT * FROM movies ORDER BY available_date DESC");
 $stmt->execute();
 

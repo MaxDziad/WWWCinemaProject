@@ -9,6 +9,7 @@
 
 .tab {
     overflow: hidden;
+    margin: auto;
 }
 
 .tab button {
@@ -54,4 +55,10 @@ form{
 .line{
     margin-top: 15px;
     margin-bottom: 15px;
+}
+.table-striped{
+    color: white;
+}
+.btn{
+    background-color: #2db94d;
 }
