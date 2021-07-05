@@ -46,15 +46,15 @@
             for (let j = 1; j <= 3; j++) {
 
                 let image = document.getElementById(("img").concat(j.toString()));
-                let cont = document.getElementById(("cont").concat(j.toString()));
+                // let cont = document.getElementById(("cont").concat(j.toString()));
                 let currentindex = posters.findIndex(element => element == (image.src).substring(22));
 
                 if (currentindex == 8) {
                     image.src = posters[0]
-                    cont.href = ("https://s123.labagh.pl/movies/show/").concat(id[0]);
+                    image.parentElement.href = ("https://s123.labagh.pl/movies/show/").concat(id[0]);
                 } else {
                     image.src = posters[currentindex + 1];
-                    cont.href = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex + 1]);
+                    image.parentElement.href = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex + 1]);
                 }
             }
         }
@@ -81,15 +81,14 @@
         for (let j = 1; j <= 3; j++) {
 
             let image = document.getElementById(("img").concat(j.toString()));
-            let cont = document.getElementById(("cont").concat(j.toString()));
             let currentindex = posters.findIndex(element => element == (image.src).substring(22));
 
-            if (currentindex == 8) {
-                image.src = posters[0]
-                cont.href = ("https://s123.labagh.pl/movies/show/").concat(id[0]);
+            if (currentindex >5 ){
+                image.src = posters[currentindex-6]
+                image.parentElement.href  = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex-6]);
             } else {
-                image.src = posters[currentindex + 1];
-                cont.href = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex + 1]);
+                image.src = posters[currentindex + 3];
+                image.parentElement.href  = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex + 3]);
             }
         }
     }, 3000);
