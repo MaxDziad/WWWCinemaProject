@@ -8,7 +8,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
-                    <b>KOSZYK</b>
+                    <b>WYBRANE BILETY</b>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped" id="cart-table">
@@ -61,11 +61,10 @@
             amount.appendChild(button);
             button.className = "btn btn-sm";
             button.style = "color: white;";
-            button.href = "https://google.com";
+            button.href = "/cart/remove/" + i;
             var trash = document.createElement('i');
             button.appendChild(trash);
             trash.className = "fa fa-trash";
-
         }
     });
 </script>

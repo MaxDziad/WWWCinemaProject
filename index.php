@@ -9,30 +9,9 @@ include("config.inc.php");
 
 session_start();
 
-$_SESSION['cart'] = array();
-
-
-$product = array(
-    'title' => 'Czarna wdowa',
-    'date' => '05-05-2021',
-    'time' => '15:30',
-    'amount' => '1'
-);
-array_push($_SESSION['cart'], $product);
-
-$product2 = array(
-    'title' => 'Miasto',
-    'date' => '17-07-2021',
-    'time' => '20:00',
-    'amount' => '1'
-);
-
-$product2['amount'] = 5;
-
-array_push($_SESSION['cart'], $product2);
-
-$product2['amount'] = 10;
-
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
 
 // Database connection, commented cause of errors
 
@@ -53,6 +32,7 @@ else {
 if (isset($_GET['logout'])) {
     unset($_SESSION['id']);
     unset($_SESSION['email']);
+    unset($_GET['logout']);
 }
 
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
@@ -70,7 +50,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 // Render index.html
 echo $twig->render('index.html.twig', ['login_link'=>$login_link, 'login_button'=>$login_button, 'profile_link'=> $profile_link, 'profile_button'=>$profile_button]);
 
-$pages_for_all = ['main', 'movies', 'movie_details', 'cart', 'hall_places', 'contact', 'delivery-and-payment'];
+$pages_for_all = ['main', 'movies', 'cart', 'hall_places', 'contact', 'delivery-and-payment'];
 $pages_for_logged = ['profile'];
 $pages_for_unlogged = ['login', 'registration', 'selection'];
 
@@ -88,4 +68,4 @@ if ((isset($_GET['page']) && $_GET['page'] && in_array($_GET['page'], $pages_for
     include('main.php');
 }
 
-
+?>
