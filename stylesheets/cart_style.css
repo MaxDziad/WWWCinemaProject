@@ -31,6 +31,7 @@
 .card-radio-buttons{
     margin-left: 15%;
     text-align: left;
+    margin-bottom: -6px;
 }
 
 .card-booking{
@@ -41,9 +42,16 @@
 }
 
 .g-recaptcha {
-    margin-top: 5px;
+    margin-top: 4px;
     margin-bottom: 10px;
     display: inline-block;
+}
+
+.summary{
+    color: white;
+    font-size: 18px;
+    margin-top: -5px;
+    margin-bottom: 10px;
 }
 
 #booking-button {
@@ -54,7 +62,7 @@
     font-weight: bold;
 }
 
-#sum {
+#inscription {
     color: white;
     font-size: 25px;
     font-weight: bold;

@@ -51,7 +51,7 @@ if (empty($_SESSION['cart'])) {
             if ($name == '' || $surname == '' || $address == '' || $address_cd == '' || $postcode == '' || $city == '' ||$email == '' || $phone_number == '') {
                 $message = "Pola nie mogą być puste.";
             } else {
-                if (!preg_match('/^([1-9][0-9]*[\/]{0,1}[0-9]*)$/D', $address_cd)) {
+                if (!preg_match('/^([1-9][0-9]*[a-zA-z]{0,1}[\/]{0,1}[0-9]*)$/D', $address_cd)) {
                     $message = "Podany adres jest niepoprawny.";
                 } else {
                     if (!preg_match('/^([0-9]{2}-[0-9]{3})$/D', $postcode)) {

@@ -7,11 +7,11 @@
         <div class="container mb-5">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="card" style="margin-bottom: -3px;">
-                        <div class="card-header">
+                    <div class="card" >
+                        <div class="card-header" >
                             <b>DANE REZERWUJĄCEGO</b>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="margin-bottom: -12px;">
                             <input class="cart_inputs" type="text" name="name" placeholder="Imię" value="{{ name }}">
                             <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}">
                             <br>
@@ -29,10 +29,12 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
-                            <b>WYBRANE BILETY</b>
+                            <b>PODSUMOWANIE</b>
                         </div>
-                        <div class="card-body card-text" id="my-tickets">
-                            <!-- tutaj wyświetlanie koszyka, bez edycji-->
+                        <div class="card-body card-text">
+                            <div class="summary" id="amount"></div>
+                            <div class="summary" id="sum"></div>
+                            <a href = "/cart" class="btn btn-success btn-md" style = "width: 80%;" >EDYTUJ</a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +64,7 @@
                             <label for="by-collection">PŁATNOŚĆ PRZY ODBIORZE</label>
                             <br>
                             <input type="radio" id="transfer" name="payment" value="transfer">
-                            <label for="transfer">PRZELEW TRADYCYJNY</label>
+                            <label for="transfer">PRZELEW (PayU, BLIK)</label>
                         </div>
                     </div>
                 </div>
@@ -93,19 +95,13 @@
         var cart = {{ cart_php|json_encode|raw }};
         let length = cart.length;
 
-        var tickets = document.getElementById("my-tickets");
+        let value = length * 19.99;
 
-        for (let i = 0; i < length; i++) {
-            var ticket = truncate(cart[i]['title'], 18) + ' - ' + cart[i]['date'] + ' ' + cart[i]['time'] +  '<br>';
-            tickets.innerHTML += ticket;
-        }
+        var amount = document.getElementById("amount");
+        var sum = document.getElementById("sum");
 
-        var button = document.createElement('a');
-        tickets.appendChild(button);
-        button.className = "btn btn-success btn-md";
-        button.style = "width: 80%;";
-        button.href = "/cart";
-        button.innerHTML = "EDYTUJ";
+        amount.innerHTML = '<b>' + "ILOŚĆ BILETÓW: " + '</b>' + length;
+        sum.innerHTML = '<b>' + "SUMA: " + '</b>' + value.toFixed(2) + " PLN";
 
     });
 </script>
