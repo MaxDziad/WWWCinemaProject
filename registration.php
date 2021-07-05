@@ -22,7 +22,7 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
             $message = "Pola nie mogą być puste.";
         }
         else {
-            if (!preg_match('/^([1-9][0-9]*[\/]{0,1}[0-9]*)$/D', $new_address_cd)) {
+            if (!preg_match('/^([1-9][0-9]*[a-zA-z]{0,1}[\/]{0,1}[0-9]*)$/D', $new_address_cd)) {
                 $message = "Podany adres jest niepoprawny.";
             } else {
                 if (!preg_match('/^([0-9]{2}-[0-9]{3})$/D', $new_postcode)) {

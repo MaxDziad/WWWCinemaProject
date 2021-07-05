@@ -42,8 +42,7 @@ if (empty($_SESSION['cart'])) {
         $city = $_POST['city'];
         $email = $_POST['email'];
         $phone_number = $_POST['phone_number'];
-        $delivery = $_POST['delivery'];
-        $payment = $_POST['payment'];
+
 
         $recaptcha = new \ReCaptcha\ReCaptcha('6LcrreYUAAAAALTdoToeer_H4NZ1ECK4U76g0huL');
         $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
@@ -65,22 +64,25 @@ if (empty($_SESSION['cart'])) {
                                 $message = "Podany numer telefonu jest niepoprawny.";
                             } else {
                                 if (!isset($_POST['delivery'])) {
-                                    $message = "Nie wybrano sposobu dostawy.";
+                                    $message = "Nie wybrano formy dostawy.";
                                 } else {
+                                    $delivery = $_POST['delivery'];
                                     if (!isset($_POST['payment'])) {
-                                        $message = "Nie wybrano sposobu płatności";
+                                        $message = "Nie wybrano formy płatności.";
                                     } else {
-                                        if ($_POST['delivery']=="e-ticket" && $_POST['payment']=="transfer") {
+                                        $payment = $_POST['payment'];
+                                        if ($_POST['delivery']=="e-ticket" && $_POST['payment']=="by-collection") {
                                             $message = "Bilet elektroniczny jest dostępny tylko przy płatności przelewem.";
                                         } else {
-                                            echo $twig->render('registration.html.twig', []);
-                                            /*  try {
-                                                  $stmt = $dbh->prepare('INSERT INTO users (id, name, surname, address, address_cd, postcode, city, email, phone_number, password, created) VALUES (null, :name, :surname, :address, :address_cd, :postcode, :city, :email, :phone_number, :password, NOW())');
-                                                  $stmt->execute([':name' => $name, ':surname' => $surname, ':address' => $address, ':address_cd' => $address_cd, ':postcode' => $postcode, ':city' => $city, ':email' => $email, ':phone_number' => $phone_number, ':password' => $new_password]);
-                                                  $message = "Konto zostało zarejestrowane.";
-                                              } catch (PDOException $e) {
-                                                  $message = "Podany adres email jest już zajęty.";
-                                              }*/
+                                            foreach ($_SESSION['cart'] as $key => $value) {
+                                                try {
+                                                    $ticket = $_SESSION['cart'][$key];
+                                                    $stmt = $dbh->prepare('INSERT INTO tickets (id, title, date, time, price, name, surname, address, address_cd, postcode, city, email, phone_number, delivery, payment, created) VALUES (null, :title, :date, :time, :price, :name, :surname, :address, :address_cd, :postcode, :city, :email, :phone_number, :delivery, :payment, NOW())');
+                                                    $stmt->execute([':title' => $ticket['title'], ':date' => $ticket['date'], ':time' => $ticket['time'], ':price' => $ticket['price'], ':name' => $name, ':surname' => $surname, ':address' => $address, ':address_cd' => $address_cd, ':postcode' => $postcode, ':city' => $city, ':email' => $email, ':phone_number' => $phone_number, ':delivery' => $delivery, ':payment' => $payment]);
+                                                } catch (PDOException $e) {}
+                                            }
+                                            unset($_SESSION['cart']);
+                                            header('Location: /');
                                         }
                                     }
                                 }
@@ -103,7 +105,8 @@ if (empty($_SESSION['cart'])) {
         'city' => $city,
         'email' => $email,
         'phone_number' => $phone_number,
-        'message' => $message
+        'message' => $message,
+        'cart_php' => $_SESSION['cart']
     ]);
 }
 
