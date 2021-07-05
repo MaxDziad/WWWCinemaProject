@@ -15,6 +15,7 @@ if (isset($_POST['movieDate']) && isset($_POST['movieHour'])){
         'title' => $movieTitle,
         'date' => $movieDate,
         'time' => $movieHour,
+        'price' => 19.99
     );
     array_push($_SESSION['cart'], $ticket);
 }
