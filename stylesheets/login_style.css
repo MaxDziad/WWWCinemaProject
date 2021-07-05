@@ -12,11 +12,13 @@
 #login-input-email {
     margin-top: 15px;
     margin-bottom: 15px;
+    width: 45%;
 }
 
 #login-input-password {
     margin-top: 15px;
     margin-bottom: 20px;
+    width: 45%;
 }
 
 .btn {

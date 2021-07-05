@@ -18,12 +18,15 @@
                                 <th scope="col">TYTUŁ</th>
                                 <th scope="col">DATA</th>
                                 <th scope="col">GODZINA</th>
+                                <th scope="col">CENA</th>
                                 <th scope="col">USUŃ</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
+                    <div id="sum"></div>
+                    <br>
                     <a href="/movies" class="cart-buttons btn btn-success mx-2 btn-lg" role="button">POWRÓT</a>
                     <a href="{{ next_step_cart_link }}" class="cart-buttons btn btn-success mx-2 btn-lg" role="button">DALEJ</a>
                 </div>
@@ -47,24 +50,39 @@
             var title = document.createElement('td');
             var date = document.createElement('td');
             var time = document.createElement('td');
-            var amount = document.createElement('td');
+            var price = document.createElement('td');
+            var remove_button = document.createElement('td');
             row.appendChild(ordinal);
             row.appendChild(title);
             row.appendChild(date);
             row.appendChild(time);
-            row.appendChild(amount);
+            row.appendChild(price);
+            row.appendChild(remove_button);
             ordinal.innerHTML = i + 1;
             title.innerHTML = cart[i]['title'];
             date.innerHTML = cart[i]['date'];
             time.innerHTML = cart[i]['time'];
+            price.innerHTML = cart[i]['price'] + " PLN";
             var button = document.createElement('a');
-            amount.appendChild(button);
+            remove_button.appendChild(button);
             button.className = "btn btn-sm";
             button.style = "color: white;";
             button.href = "/cart/remove/" + i;
-            var trash = document.createElement('i');
-            button.appendChild(trash);
-            trash.className = "fa fa-trash";
+            var trash_ico = document.createElement('i');
+            button.appendChild(trash_ico);
+            trash_ico.className = "fa fa-trash";
         }
+
+        var sum = document.getElementById("sum");
+
+        if (length !== 0) {
+            let value = length * 19.99;
+            sum.innerHTML = "SUMA: " + value.toFixed(2) + " PLN";
+            sum.style = "text-align: right;";
+        } else {
+            sum.innerHTML = "Twój koszyk jest pusty!";
+            sum.style = "text-align: center;";
+        }
+
     });
 </script>

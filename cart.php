@@ -18,12 +18,13 @@ if (isset($_POST['movieDate']) && isset($_POST['movieHour'])){
         'price' => 19.99
     );
     array_push($_SESSION['cart'], $ticket);
+    header('Location: /cart');
 }
 
 if (isset($_GET['remove']) && intval($_GET['remove']) >= 0) {
     $id = intval($_GET['remove']);
     unset($_SESSION["cart"][$id]);
-    unset($_GET['remove']);
+    $_SESSION["cart"] = array_values($_SESSION["cart"]);
     header('Location: /cart');
 }
 

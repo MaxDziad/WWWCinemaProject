@@ -3,15 +3,15 @@
 </head>
 
 <center>
-    <div class="container mb-5">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <b>DANE REZERWUJĄCEGO</b>
-                    </div>
-                    <div class="card-body">
-                        <form action="/confirmation" method="POST" style="margin-bottom: -13px;">
+    <form action="/cart/delivery-and-payment" method="POST" >
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card" style="margin-bottom: -3px;">
+                        <div class="card-header">
+                            <b>DANE REZERWUJĄCEGO</b>
+                        </div>
+                        <div class="card-body">
                             <input class="cart_inputs" type="text" name="name" placeholder="Imię" value="{{ name }}">
                             <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}">
                             <br>
@@ -23,67 +23,89 @@
                             <br>
                             <input class="cart_inputs" type="text" name="email" placeholder="E-mail" value="{{ email }}">
                             <input class="cart_inputs" type="text" name="phone_number" placeholder="Telefon" value="{{ phone_number }}">
-                        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>WYBRANE BILETY</b>
+                        </div>
+                        <div class="card-body card-text" id="my-tickets">
+                            <!-- tutaj wyświetlanie koszyka, bez edycji-->
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <b>WYBRANE BILETY</b>
-                    </div>
-                    <div class="card-body">
-                        <!-- tutaj wyświetlanie koszyka, bez edycji-->
-                        <a href="/cart" class="btn btn-success btn-md" role="button" style="width: 80%;">EDYTUJ</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <b>FORMA DOSTAWY</b>
-                    </div>
-                    <div class="card-body card-radio-buttons">
-                        <form action="/confirmation" method="POST">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <b>FORMA DOSTAWY</b>
+                        </div>
+                        <div class="card-body card-radio-buttons">
                             <input type="radio" id="collection" name="delivery" value="collection">
                             <label for="collection">ODBIÓR OSOBISTY</label>
                             <br>
                             <input type="radio" id="e-ticket" name="delivery" value="e-ticket">
                             <label for="e-ticket">BILET ELEKTRONICZNY</label>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <b>FORMA PŁATNOŚCI</b>
-                    </div>
-                    <div class="card-body card-radio-buttons">
-                        <form action="/confirmation" method="POST">
+                <div class="col-md-4">
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <b>FORMA PŁATNOŚCI</b>
+                        </div>
+                        <div class="card-body card-radio-buttons">
                             <input type="radio" id="by-collection" name="payment" value="by-collection">
-                            <label for="by-collection">PRZY ODBIORZE</label>
+                            <label for="by-collection">PŁATNOŚĆ PRZY ODBIORZE</label>
                             <br>
                             <input type="radio" id="transfer" name="payment" value="transfer">
                             <label for="transfer">PRZELEW TRADYCYJNY</label>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card mt-3">
-                    <div class="card-body card-booking">
-                        <form action="/confirmation" method="POST">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card mt-3">
+                        <div class="card-body card-booking justify-content-center">
                             <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
+                            <br>
                             <input class="btn btn-success btn-lg" id="booking-button" type="submit" value="REZERWUJ">
-                        </form>
+                            <br>
+                            <a style="width: 100%;">{{ message }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </center>
+
+<script>
+    function truncate(str, n){
+        return (str.length > n) ? str.substr(0, n-1) + '&hellip;' : str;
+    };
+
+    $(document).ready(function(){
+        var cart = {{ cart_php|json_encode|raw }};
+        let length = cart.length;
+
+        var tickets = document.getElementById("my-tickets");
+
+        for (let i = 0; i < length; i++) {
+            var ticket = truncate(cart[i]['title'], 18) + ' - ' + cart[i]['date'] + ' ' + cart[i]['time'] +  '<br>';
+            tickets.innerHTML += ticket;
+        }
+
+        var button = document.createElement('a');
+        tickets.appendChild(button);
+        button.className = "btn btn-success btn-md";
+        button.style = "width: 80%;";
+        button.href = "/cart";
+        button.innerHTML = "EDYTUJ";
+
+    });
+</script>

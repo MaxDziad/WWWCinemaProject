@@ -37,14 +37,29 @@
     margin-right: auto;
     margin-left: auto;
     text-align: center;
+    margin-bottom: -8px;
+}
+
+.g-recaptcha {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 #booking-button {
-    margin-top: 15px;
+    margin-bottom: 11px;
     height: 77px;
     width: 220px;
     font-size: 25px;
     font-weight: bold;
+}
+
+#sum {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 th, td {
