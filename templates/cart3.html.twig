@@ -3,6 +3,7 @@
 </head>
 
 <center>
+    <form action="/cart/delivery-and-payment" method="POST" >
     <div class="container mb-5">
         <div class="row">
             <div class="col-md-8">
@@ -11,7 +12,7 @@
                         <b>DANE REZERWUJĄCEGO</b>
                     </div>
                     <div class="card-body">
-                        <form action="/confirmation" method="POST" style="margin-bottom: -13px;">
+
                             <input class="cart_inputs" type="text" name="name" placeholder="Imię" value="{{ name }}">
                             <input class="cart_inputs" type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}">
                             <br>
@@ -23,7 +24,7 @@
                             <br>
                             <input class="cart_inputs" type="text" name="email" placeholder="E-mail" value="{{ email }}">
                             <input class="cart_inputs" type="text" name="phone_number" placeholder="Telefon" value="{{ phone_number }}">
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -46,13 +47,13 @@
                         <b>FORMA DOSTAWY</b>
                     </div>
                     <div class="card-body card-radio-buttons">
-                        <form action="/confirmation" method="POST">
+
                             <input type="radio" id="collection" name="delivery" value="collection">
                             <label for="collection">ODBIÓR OSOBISTY</label>
                             <br>
                             <input type="radio" id="e-ticket" name="delivery" value="e-ticket">
                             <label for="e-ticket">BILET ELEKTRONICZNY</label>
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -62,13 +63,13 @@
                         <b>FORMA PŁATNOŚCI</b>
                     </div>
                     <div class="card-body card-radio-buttons">
-                        <form action="/confirmation" method="POST">
+
                             <input type="radio" id="by-collection" name="payment" value="by-collection">
-                            <label for="by-collection">PRZY ODBIORZE</label>
+                            <label for="by-collection">PŁATNOŚĆ PRZY ODBIORZE</label>
                             <br>
                             <input type="radio" id="transfer" name="payment" value="transfer">
                             <label for="transfer">PRZELEW TRADYCYJNY</label>
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -77,13 +78,15 @@
             <div class="col-md-8">
                 <div class="card mt-3">
                     <div class="card-body card-booking">
-                        <form action="/confirmation" method="POST">
+
                             <div class="g-recaptcha" data-sitekey="6LcrreYUAAAAAGeERM9Etdv8wlh81RCSK0LXuwfX"></div>
-                            <input class="btn btn-success btn-lg" id="booking-button" type="submit" value="REZERWUJ">
-                        </form>
+                            <input class="btn btn-success btn-lg" id="booking-buttons" type="submit" value="REZERWUJ">
+                            {{ message }}
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 </center>

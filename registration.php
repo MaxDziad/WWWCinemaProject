@@ -18,7 +18,7 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
     $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
 
     if ($resp->isSuccess()) {
-        if($new_name=='' || $new_surname=='' || $new_email=='' || $new_phone_number=='' || $new_password=='' || $new_password_confirm==''){
+        if($new_name=='' || $new_surname=='' || $new_address == '' || $new_address_cd == '' || $new_postcode == '' || $new_city == ''|| $new_email=='' || $new_phone_number=='' || $new_password=='' || $new_password_confirm==''){
             $message = "Pola nie mogą być puste.";
         }
         else {
