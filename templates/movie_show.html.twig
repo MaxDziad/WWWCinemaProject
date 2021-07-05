@@ -12,6 +12,7 @@
             </div>
             <div class="form-group col-md mr-4 mt-5" style="font-style: oblique">
                 <form action="/cart" method="POST">
+                    <input type="hidden" name="movieTitle" value="{{title}}" />
                     <label for="movieDate">Wybierz datę seansu:</label>
                     <br>
                     <input type="date" id="movieDate" name="movieDate"  max="{{ expiration_date }}">
