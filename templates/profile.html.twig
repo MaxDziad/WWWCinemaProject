@@ -1,15 +1,6 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/stylesheets/profile.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -17,16 +8,16 @@
 <div class="container-md">
     <div class="row mt-3">
 
-        <div class="col-3">
+        <div class="col-4">
             <div class="card">
                 <div class="card-header">
                     Moje konto
                 </div>
-                <ul class="list-group list-group-flush">
-                    <button class="list-group-item">Moje bilety</button>
-                    <button class="list-group-item">Zmień dane konta</button>
-                    <button class="list-group-item">Zmień dane osobowe</button>
-                    <button class="list-group-item">Usuń konto</button>
+                <ul class="list-group list-group-flush" id="choose-card">
+                    <button class="list-group-item" id = "tickets">Moje bilety</button>
+                    <button class="list-group-item" id = "acc_info">Zmień hasło</button>
+                    <button class="list-group-item" id = "prvt_info">Zmień dane osobowe</button>
+                    <button class="list-group-item" id = "del_acc">Usuń konto</button>
                 </ul>
             </div>
         </div>
@@ -34,49 +25,27 @@
 
         {% set chosen_card = 'tickets' %}
         {% if chosen_card == 'tickets' %}
-            <div class="col-9">
+            <div class="col-md-8">
                 <div class="card" id="card-content">
                     <div class="card-header">
-                        Moje bilety
+                        Zmień hasło
                     </div>
-                    <div class="card-text my-3 mx-3">
-                        <table class="table table-borderless">
-                            <tr>
-                                <td>
-                                    <a>Podaj stare hasło:</a>
-                                </td>
-                                <td colspan="2">
-                                    <input type="text" class="old-pass" method>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a>Wybierz nowe hasło:</a>
-                                </td>
-                                <td colspan="2">
-                                    <input type="text">
-                                </td>
-                            </tr>
-                            <tr>
-                            <td>
-                                <a>Powtórz nowe hasło:</a>
-                            </td>
-                            <td colspan="2">
-                                <input type="text">
-                            </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td><button>Potwierdź</button></td>
-                            </tr>
-                        </table>
+                    <div class="card-body">
+                        <form action="/change_passwd" method="POST" class="">
+                            <input id="chng-pswd-old" type="text" class="old-pass line" placeholder="Stare hasło:">
+                            <br>
+                            <input id="chng-pswd-new" type="text" class="new-pass line" placeholder="Nowe hasło:">
+                            <br>
+                            <input id="chng-pswd-rpt" type="text" class="rep-pass line" placeholder="Powtórz nowe hasło:">
+                            <br>
+                            <input type="submit" class="btn">
+                        </form>
                     </div>
                 </div>
             </div>
 
-        {% elseif chosen_card == 'account_info' %}
-            <div class="col-9">
+        {% elseif chosen_card == 'acc_info' %}
+            <div class="col-8">
                 <div class="card" id="card-content">
                     <div class="card-header">
                         Zmień dane konta
@@ -87,8 +56,8 @@
                 </div>
             </div>
 
-        {% elseif chosen_card == 'private_info' %}
-            <div class="col-9">
+        {% elseif chosen_card == 'prvt_info' %}
+            <div class="col-8">
                 <div class="card" id="card-content">
                     <div class="card-header">
                         Zmień dane konta
@@ -98,8 +67,8 @@
                     </div>
                 </div>
             </div>
-        {% elseif chosen_card == 'delete_acc' %}
-            <div class="col-9">
+        {% elseif chosen_card == 'del_acc' %}
+            <div class="col-8">
                 <div class="card" id="card-content">
                     <div class="card-header">
                         Zmień dane konta
@@ -117,7 +86,12 @@
 </div>
 
 <script>
+    function choose_card(x){
+        {% set chosen_card = x %}
+    }
 
+    var panel = document.getElementById("choose-card");
+    panel.addEventListener("click", choose_card(panel.id));
 </script>
 
 </body>
