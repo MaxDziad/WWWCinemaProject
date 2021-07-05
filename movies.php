@@ -2,7 +2,7 @@
 
 echo $twig->render('movies_head.html.twig', []);
 
-// Movie detailed
+// Movie details
 if (isset($_GET['show']) && intval($_GET['show']) > 0) {
     $id = intval($_GET['show']);
     $stmt = $dbh->prepare("SELECT * FROM movies WHERE id = :id");
@@ -19,8 +19,10 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
         $poster_path = htmlspecialchars($row['poster_path'], ENT_QUOTES | ENT_HTML401);
         $available_date = $row['available_date'];
         $expiration_date = $row['expiration_date'];
-        $ticket_price = intval($row['ticket_price']);
+        $movie_hours = htmlspecialchars($row['movie_hours'], ENT_QUOTES | ENT_HTML401);
         $trailer_URL = htmlspecialchars($row['trailer_URL']);
+
+        $movie_hours = explode(',', $movie_hours);
 
         echo $twig->render('movie_show.html.twig', [
             'id' => $id,
@@ -33,8 +35,8 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
             'poster_path' => $poster_path,
             'available_date' => $available_date,
             'expiration_date' => $expiration_date,
-            'ticket_price' => $ticket_price,
-            'trailer_URL' => $trailer_URL
+            'movie_hours' => $movie_hours,
+            'trailer_URL' => $trailer_URL,
         ]);
     }
     else{
@@ -44,9 +46,11 @@ if (isset($_GET['show']) && intval($_GET['show']) > 0) {
 
 // Search for given movie
 else if(isset($_POST['search'])){
+    echo $twig->render('movies_return.html.twig', []);
+
     $search = htmlspecialchars($_POST['search'], ENT_QUOTES | ENT_HTML401);
     $search = "%" . $search . "%";
-    $stmt = $dbh->prepare("SELECT * FROM movies WHERE title LIKE :title");
+    $stmt = $dbh->prepare("SELECT * FROM movies WHERE title LIKE :title ORDER BY available_date DESC");
     $stmt -> execute([':title' => $search]);
 
     if($stmt->columnCount() > 0) {
@@ -82,6 +86,8 @@ else if(isset($_POST['search'])){
 
 // Showing all the movies when id is not given
 else {
+    echo $twig->render('movie_searching.html.twig', []);
+
     $stmt = $dbh->prepare("SELECT * FROM movies ORDER BY available_date DESC");
     $stmt->execute();
 

@@ -9,6 +9,31 @@ include("config.inc.php");
 
 session_start();
 
+$_SESSION['cart'] = array();
+
+
+$product = array(
+    'title' => 'Czarna wdowa',
+    'date' => '05-05-2021',
+    'time' => '15:30',
+    'amount' => '1'
+);
+array_push($_SESSION['cart'], $product);
+
+$product2 = array(
+    'title' => 'Miasto',
+    'date' => '17-07-2021',
+    'time' => '20:00',
+    'amount' => '1'
+);
+
+$product2['amount'] = 5;
+
+array_push($_SESSION['cart'], $product2);
+
+$product2['amount'] = 10;
+
+
 // Database connection, commented cause of errors
 
 if (isset($config) && is_array($config)) {

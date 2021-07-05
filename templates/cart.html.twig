@@ -1,5 +1,6 @@
 <head>
     <link rel="stylesheet" href="/stylesheets/cart_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <center>
@@ -10,24 +11,61 @@
                     <b>KOSZYK</b>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="cart-table">
                         <thead>
                             <tr>
                                 <th scope="col">Lp.</th>
                                 <th scope="col">TYTUŁ</th>
                                 <th scope="col">DATA</th>
                                 <th scope="col">GODZINA</th>
-                                <th scope="col">ILOŚĆ</th>
+                                <th scope="col">USUŃ</th>
                             </tr>
                         </thead>
                         <tbody>
-
                         </tbody>
                     </table>
-                    <a href="/movies" class="cart-buttons btn btn-success mx-2 btn-lg active" role="button">POWRÓT</a>
-                    <a href="{{ next_step_cart_link }}" class="cart-buttons btn btn-success mx-2 btn-lg active" role="button">DALEJ</a>
+                    <a href="/movies" class="cart-buttons btn btn-success mx-2 btn-lg" role="button">POWRÓT</a>
+                    <a href="{{ next_step_cart_link }}" class="cart-buttons btn btn-success mx-2 btn-lg" role="button">DALEJ</a>
                 </div>
             </div>
         </div>
     </div>
 </center>
+
+<script>
+    $(document).ready(function(){
+        var cart = {{ cart_php|json_encode|raw }};
+        let length = cart.length;
+
+        var cart_table = document.getElementById("cart-table");
+        var cart_table_tbody = cart_table.getElementsByTagName('tbody')[0];
+
+        for (let i = 0; i < length; i++) {
+            var row = document.createElement('tr');
+            cart_table_tbody.appendChild(row);
+            var ordinal = document.createElement('td');
+            var title = document.createElement('td');
+            var date = document.createElement('td');
+            var time = document.createElement('td');
+            var amount = document.createElement('td');
+            row.appendChild(ordinal);
+            row.appendChild(title);
+            row.appendChild(date);
+            row.appendChild(time);
+            row.appendChild(amount);
+            ordinal.innerHTML = i + 1;
+            title.innerHTML = cart[i]['title'];
+            date.innerHTML = cart[i]['date'];
+            time.innerHTML = cart[i]['time'];
+            var button = document.createElement('a');
+            amount.appendChild(button);
+            button.className = "btn btn-sm";
+            button.style = "color: white;";
+            button.href = "https://google.com";
+            var trash = document.createElement('i');
+            button.appendChild(trash);
+            trash.className = "fa fa-trash";
+
+        }
+    });
+</script>

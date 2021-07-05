@@ -5,7 +5,7 @@
 }
 
 .card-header {
-    background-color: #28a745;
+    background-color: #2db94d;
     font-size: 25px;
 }
 
@@ -25,6 +25,7 @@
     margin-right: 7px;
     margin-left: 7px;
     margin-bottom: 15px;
+    width: 35%;
 }
 
 .card-radio-buttons{
@@ -46,9 +47,10 @@
     font-weight: bold;
 }
 
-th {
+th, td {
     background-color: black;
     color: white;
+    text-align: center;
 }
 
 form {
