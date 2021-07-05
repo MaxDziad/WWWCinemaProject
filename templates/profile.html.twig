@@ -1,120 +1,104 @@
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/stylesheets/profile.css">
+
+<link rel="stylesheet" href="/stylesheets/profile.css">
 </head>
-
-<body>
-
 <div class="container-md">
     <div class="row mt-3">
 
+        <!--Tab menu-->
         <div class="col-4">
             <div class="card">
-                <div class="card-header ">
+                <div class="card-header">
                     Moje konto
                 </div>
-                <ul class="list-group list-group-flush" id="choose-card">
-                    <button class="list-group-item" id="tickets">Moje bilety</button>
-                    <button class="list-group-item" id="acc_info">Zmień hasło</button>
-                    <button class="list-group-item" id="prvt_info">Zmień dane osobowe</button>
-                    <button class="list-group-item" id="del_acc">Usuń konto</button>
-                </ul>
+                <div class="btn-group-vertical tab" role="group" id="choose-card">
+                    <button class="tab-links" onclick="pressTab(event, 'tickets')">Moje bilety</button>
+                    <button class="tab-links" onclick="pressTab(event, 'account_info')">Zmień hasło</button>
+                    <button class="tab-links" onclick="pressTab(event, 'private_info')">Zmień dane osobowe</button>
+                    <button class="tab-links" onclick="pressTab(event, 'delete_account')">Usuń konto</button>
+                </div>
             </div>
         </div>
 
+        <!--My tickets tab-->
+        <div class="tabcontent col-8" id="tickets">
+            <div class="card" id="card-content">
+                <div class="card-header">
+                    Zmień dane konta
+                </div>
+                <div class="card-text my-3 mx-3">
+                    gjknljkgchjvbkjcghvjkb
+                </div>
+            </div>
+        </div>
 
-        {% set chosen_card = 'tickets' %}
-        {% if chosen_card == 'tickets' %}
-            <div class="col-md-8">
-                <div class="card" id="card-content">
-                    <div class="card-header">
-                        Zmień hasło
-                    </div>
-                    <div class="card-body mx-auto">
-                        <form action="/change_passwd" method="POST" class="">
-                            <input id="chng-pswd-old" type="text" class="old-pass line" placeholder="Stare hasło:">
-                            <br>
-                            <input id="chng-pswd-new" type="text" class="new-pass line" placeholder="Nowe hasło:">
-                            <br>
-                            <input id="chng-pswd-rpt" type="text" class="rep-pass line"
-                                   placeholder="Powtórz nowe hasło:">
-                            <br>
-                            <input type="submit" class="btn">
-                        </form>
-                    </div>
+        <!--Change password tab-->
+        <div class="tabcontent col-8" id="account_info">
+            <div class="card" id="card-content">
+                <div class="card-header">
+                    Zmień hasło
+                </div>
+                <div class="card-body">
+                    <form action="/change_passwd" method="POST" class="">
+                        <input id="chng-pswd-old" type="text" class="old-pass line" placeholder="Stare hasło:">
+                        <br>
+                        <input id="chng-pswd-new" type="text" class="new-pass line" placeholder="Nowe hasło:">
+                        <br>
+                        <input id="chng-pswd-rpt" type="text" class="rep-pass line" placeholder="Powtórz nowe hasło:">
+                        <br>
+                        <input type="submit" class="btn">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Update personal data tab-->
+        <div class="tabcontent col-8" id="private_info">
+            <div class="card" id="card-content">
+                <div class="card-header">
+                    Zmień dane konta
+                </div>
+                <div class="card-text my-3 mx-3">
+                    gjknljkgchjvbkjcghvjkb
+                </div>
+            </div>
+        </div>
+
+        <!--Delete account tab-->
+        <div class="tabcontent col-8" id="delete_account">
+            <div class="card" id="card-content">
+                <div class="card-header">
+                    Zmień dane konta
+                </div>
+                <div class="card-text my-3 mx-3">
+                    gjknljkgchjvbkjcghvjkb
                 </div>
             </div>
 
-        {% elseif chosen_card == 'acc_info' %}
-            <div class="col-8">
-                <div class="card" id="card-content">
-                    <div class="card-header">
-                        Zmień dane konta
-                    </div>
-                    <div class="card-text my-3 mx-3">
-                        gjknljkgchjvbkjcghvjkb
-                    </div>
-                </div>
-            </div>
-
-        {% elseif chosen_card == 'prvt_info' %}
-            <div class="col-8">
-                <div class="card" id="card-content">
-                    <div class="card-header">
-                        Zmień dane konta
-                    </div>
-                    <div class="card-text my-3 mx-3">
-                        gjknljkgchjvbkjcghvjkb
-                    </div>
-                </div>
-            </div>
-        {% elseif chosen_card == 'del_acc' %}
-            <div class="col-8">
-                <div class="card" id="card-content">
-                    <div class="card-header">
-                        Zmień dane konta
-                    </div>
-                    <div class="card-text my-3 mx-3">
-                        gjknljkgchjvbkjcghvjkb
-                    </div>
-                </div>
-            </div>
-        {% else %}
-            {% set chosen_card = 'tickets' %}
-        {% endif %}
+        </div>
 
     </div>
 </div>
 
 <script>
 
-    console.log("dfghj");
+    document.getElementById("tickets").style.display = "block";
 
-    function choose_tickets() {
-        {% set chosen_card = 'tickets' %}
+    function pressTab(evt, tab) {
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tab-links");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tab).style.display = "block";
+        evt.currentTarget.className += " active";
     }
-
-    function choose_acc(){
-        {% set chosen_card = 'acc_info' %}
-    }
-
-    function choose_prvt(){
-        {% set chosen_card = 'prvt_info' %}
-        console.log("afs");
-    }
-
-    function choose_del(){
-        {% set chosen_card = 'del_acc' %}
-    }
-
-    document.getElementById("tickets").addEventListener("click", choose_tickets());
-
-    document.getElementById("acc_info").addEventListener("click", choose_acc());
-
-    document.getElementById("prvt_info").addEventListener("click", choose_prvt());
-
-    document.getElementById("del_acc").addEventListener("click", choose_del());
-
 </script>
-
-</body>
