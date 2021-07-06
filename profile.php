@@ -1,6 +1,7 @@
 <?php
-$email = $_SESSION['email'];
 
+//Moje konto:
+$email = $_SESSION['email'];
 $stmt = $dbh->prepare("SELECT * FROM tickets WHERE email = :email ORDER BY 'date', time ");
 $stmt->execute([':email' => $_SESSION['email']]);
 $title = array();
@@ -15,7 +16,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     array_push($time, $row['time']);
 }
 
+//Zmień hasło:
 $message = "";
+$stmt = $dbh->prepare("SELECT * FROM users WHERE email = :email");
+$stmt->execute([':email' => $_SESSION['email']]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 if (isset($_POST['old_password']) && isset($_POST['new_password']) && isset($_POST['repeat_password'])) {
 
@@ -27,9 +33,6 @@ if (isset($_POST['old_password']) && isset($_POST['new_password']) && isset($_PO
         $message = "Pola nie mogą być puste.";
     } else {
 
-        $stmt = $dbh->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->execute([':email' => $_SESSION['email']]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (password_verify($old_password, $user['password']) == false) {
             $message = "Aktualne hasło jest niepoprawne";
@@ -48,12 +51,64 @@ if (isset($_POST['old_password']) && isset($_POST['new_password']) && isset($_PO
         }
     }
 }
+
+//Zmień dane osobowe:
+$address = $user['address'];
+$address_cd = $user['address_cd'];
+$postcode = $user['postcode'];
+$city = $user['city'];
+$phone = $user['phone_number'];
+$message2 = "";
+
+if (isset($_POST['address']) && isset($_POST['address_cd']) && isset($_POST['postcode']) && isset($_POST['city']) && isset($_POST['phone-number']) && isset($_POST['password-verify'])) {
+    $new_address = $_POST['address'];
+    $new_address_cd = $_POST['address_cd'];
+    $new_postcode = $_POST['postcode'];
+    $new_city = $_POST['city'];
+    $new_phone_number = $_POST['phone-number'];
+    $password_verify = $_POST['password-verify'];
+
+    if ($password_verify = "") {
+        $message2 = "Musisz podać hasło";
+    } else {
+        if (password_verify($password_verify, $user['password'])) {
+
+            if ($new_address == "" && $new_address_cd == "" && $new_postcode == "" && $new_city == "" && $new_phone_number == "") {
+                if (!preg_match('/^([1-9][0-9]*[a-zA-z]{0,1}[\/]{0,1}[0-9]*)$/D', $new_address_cd)) {
+                    $message2 = $message2."Podany adres jest niepoprawny. ";
+                }
+                if (!preg_match('/^([0-9]{2}-[0-9]{3})$/D', $new_postcode)) {
+                    $message = "Podany kod pocztowy jest niepoprawny.";
+                }
+            }else{
+                $message2 = "Wybierz pole które chcesz edytować. ";
+            }
+
+        } else {
+            $message2 = "Hasło jest niepoprawne. ";
+        }
+    }
+}
+
+//przekazanie danych do twiga
 echo $twig->render('profile.html.twig', [
+    /*data to tickets:*/
     'iterate' => $i,
     'title' => $title,
     'date' => $date,
     'time' => $time,
+
+    /*data to password changing*/
     'message' => $message,
+
+    /*data to personal info changing */
+    'address' => $address,
+    'addresscd' => $address_cd,
+    'postcode' => $postcode,
+    'city' => $city,
+    'phone' => $phone,
+    'message2' => $message2,
+
 ]);
 
 

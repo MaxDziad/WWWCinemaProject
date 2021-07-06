@@ -62,7 +62,7 @@
                     Zmień hasło
                 </div>
                 <div class="card-body ">
-                    <form action="/profile" method="POST" class="">
+                    <form action="/profile" method="POST" class="password-changing-form">
                         <input id="chng-pswd-old" type="password" class="line" name="old_password"
                                placeholder="Aktualne hasło:">
                         <br>
@@ -84,10 +84,23 @@
         <div class="tabcontent col-8" id="private_info">
             <div class="card" id="card-content">
                 <div class="card-header">
-                    Zmień dane osobowe
+                    ZMIEŃ DANE OSOBOWE
                 </div>
-                <div class="card-text my-3 mx-3">
-                    gjknljkgchjvbkjcghvjkb
+                <div class="card-text">
+                    <form action="/profile" method="POST" class="personal-info-changing-form">
+                        <input id="change-address" type="text" class="line" name="address" placeholder="{{ address }}:">
+                        <input id="change-address-cd" type="text" class="line" name="address_cd" placeholder="{{ address2 }}">
+                        <br>
+                        <input id="change-postcode" type="text" class="line" name="postcode" placeholder="{{ postcode }}">
+                        <input id="change-city" type="text" class="line" name="city" placeholder="{{ city }}">
+                        <br>
+                        <input id="change-phone-number" type="text" class="line" name="phone-number" placeholder="{{ phone }}">
+                        <input id="password-verify" type="password" class="line" name="password-verify" placeholder="Podaj hasło:">
+                        <br>
+                        <input id="submit-button2" type="submit" class="btn btn-success btn-lg">
+                        <br>
+                        {{ message2 }}
+                    </form>
                 </div>
             </div>
         </div>
@@ -98,8 +111,8 @@
                 <div class="card-header">
                     Usuń konto
                 </div>
-                <div class="card-text my-3 mx-3">
-                    gjknljkgchjvbkjcghvjkb
+                <div class="card-body">
+
                 </div>
             </div>
 
@@ -132,7 +145,13 @@
 
         // var button = document.getElementById("submit-button1").onclick = pressTab(event, 'account_info');
     }
-    if("{{ message }}"=="") {
-        document.getElementById("submit-button1").onclick = alert("{{ message }}");
-    }
+
+    {#if ("{{ message }}" == "") {#}
+    //     document.getElementById("submit-button1").onclick = function () {
+    //         var millisecondsToWait = 5000;
+    //         setTimeout(function() {
+    //             pressTab(event, 'account_info');
+    //         }, millisecondsToWait);
+    //     }
+    // }
 </script>
