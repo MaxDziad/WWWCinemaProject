@@ -59,6 +59,10 @@ form{
 .table-striped{
     color: white;
 }
-.btn{
-    background-color: #2db94d;
+.tab-links{
+    width: auto;
+}
+.no-tickets-info{
+    font-size: 30px;
+    text-align: center;
 }

@@ -36,14 +36,20 @@
                             <th scope="col">GODZINA</th>
                         </tr>
                         </thead>
-                        {% for i in 0..iterate-a1  %}
-                        <tbody>
-                            <td>{{ i+1 }}</td>
-                            <td>{{ title[i] }}</td>
-                            <td>{{ date[i] }}</td>
-                            <td>{{ time[i] }}</td>
-                        </tbody>
-                        {% endfor %}
+                        {% if iterate >= 1 %}
+                            {% for i in 0..iterate-1 %}
+                                <tbody>
+                                <td>{{ i+1 }}</td>
+                                <td>{{ title[i] }}</td>
+                                <td>{{ date[i] }}</td>
+                                <td>{{ time[i] }}</td>
+                                </tbody>
+                            {% endfor %}
+                        {% else %}
+                            <tbody>
+                            <td colspan="4" class="no-tickets-info">BRAK BILETÓW</td>
+                            </tbody>
+                        {% endif %}
                     </table>
                 </div>
             </div>
@@ -56,14 +62,17 @@
                     Zmień hasło
                 </div>
                 <div class="card-body ">
-                    <form action="/change_passwd" method="POST" class="">
-                        <input id="chng-pswd-old" type="password" class="line" name="old-password" placeholder="Aktualne hasło:">
+                    <form action="/profile" method="POST" class="">
+                        <input id="chng-pswd-old" type="password" class="line" name="old_password"
+                               placeholder="Aktualne hasło:">
                         <br>
-                        <input id="chng-pswd-new" type="password" class="line" name = "new-password" placeholder="Nowe hasło:">
+                        <input id="chng-pswd-new" type="password" class="line" name="new_password"
+                               placeholder="Nowe hasło:">
                         <br>
-                        <input id="chng-pswd-rpt" type="password" class="line" name = "repeat-password" placeholder="Powtórz nowe hasło:">
+                        <input id="chng-pswd-rpt" type="password" class="line" name="repeat_password"
+                               placeholder="Powtórz nowe hasło:">
                         <br>
-                        <input type="submit" class="btn">
+                        <input id="submit-button1" type="submit" class="btn btn-success btn-lg">
                         <br>
                         {{ message }}
                     </form>
@@ -120,5 +129,10 @@
         // Show the current tab, and add an "active" class to the button that opened the tab
         document.getElementById(tab).style.display = "block";
         evt.currentTarget.className += " active";
+
+        // var button = document.getElementById("submit-button1").onclick = pressTab(event, 'account_info');
+    }
+    if("{{ message }}"=="") {
+        document.getElementById("submit-button1").onclick = alert("{{ message }}");
     }
 </script>
