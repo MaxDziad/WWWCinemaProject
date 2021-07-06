@@ -58,7 +58,7 @@ form{
 
 .password_inputs {
     margin-bottom: 15px;
-    width: 40%;
+    width: 30%;
 }
 
 .user_inputs {
@@ -71,7 +71,7 @@ form{
 .delete_input {
     margin-top: 20px;
     margin-bottom: 15px;
-    width: 40%;
+    width: 30%;
 }
 
 .btn {
