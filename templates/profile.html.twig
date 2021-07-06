@@ -36,14 +36,20 @@
                             <th scope="col">GODZINA</th>
                         </tr>
                         </thead>
-                        {% for i in 0..iterate-a1  %}
-                        <tbody>
-                            <td>{{ i+1 }}</td>
-                            <td>{{ title[i] }}</td>
-                            <td>{{ date[i] }}</td>
-                            <td>{{ time[i] }}</td>
-                        </tbody>
-                        {% endfor %}
+                        {% if iterate >= 1 %}
+                            {% for i in 0..iterate-1 %}
+                                <tbody>
+                                <td>{{ i+1 }}</td>
+                                <td>{{ title[i] }}</td>
+                                <td>{{ date[i] }}</td>
+                                <td>{{ time[i] }}</td>
+                                </tbody>
+                            {% endfor %}
+                        {% else %}
+                            <tbody>
+                            <td colspan="4" class="no-tickets-info">BRAK BILETÓW</td>
+                            </tbody>
+                        {% endif %}
                     </table>
                 </div>
             </div>
@@ -56,14 +62,17 @@
                     Zmień hasło
                 </div>
                 <div class="card-body ">
-                    <form action="/change_passwd" method="POST" class="">
-                        <input id="chng-pswd-old" type="password" class="line" name="old-password" placeholder="Aktualne hasło:">
+                    <form action="/profile" method="POST" class="password-changing-form">
+                        <input id="chng-pswd-old" type="password" class="line" name="old_password"
+                               placeholder="Aktualne hasło:">
                         <br>
-                        <input id="chng-pswd-new" type="password" class="line" name = "new-password" placeholder="Nowe hasło:">
+                        <input id="chng-pswd-new" type="password" class="line" name="new_password"
+                               placeholder="Nowe hasło:">
                         <br>
-                        <input id="chng-pswd-rpt" type="password" class="line" name = "repeat-password" placeholder="Powtórz nowe hasło:">
+                        <input id="chng-pswd-rpt" type="password" class="line" name="repeat_password"
+                               placeholder="Powtórz nowe hasło:">
                         <br>
-                        <input type="submit" class="btn">
+                        <input id="submit-button1" type="submit" class="btn btn-success btn-lg">
                         <br>
                         {{ message }}
                     </form>
@@ -75,10 +84,23 @@
         <div class="tabcontent col-8" id="private_info">
             <div class="card" id="card-content">
                 <div class="card-header">
-                    Zmień dane osobowe
+                    ZMIEŃ DANE OSOBOWE
                 </div>
-                <div class="card-text my-3 mx-3">
-                    gjknljkgchjvbkjcghvjkb
+                <div class="card-text">
+                    <form action="/profile" method="POST" class="personal-info-changing-form">
+                        <input id="change-address" type="text" class="line" name="address" placeholder="{{ address }}:">
+                        <input id="change-address-cd" type="text" class="line" name="address_cd" placeholder="{{ address2 }}">
+                        <br>
+                        <input id="change-postcode" type="text" class="line" name="postcode" placeholder="{{ postcode }}">
+                        <input id="change-city" type="text" class="line" name="city" placeholder="{{ city }}">
+                        <br>
+                        <input id="change-phone-number" type="text" class="line" name="phone-number" placeholder="{{ phone }}">
+                        <input id="password-verify" type="password" class="line" name="password-verify" placeholder="Podaj hasło:">
+                        <br>
+                        <input id="submit-button2" type="submit" class="btn btn-success btn-lg">
+                        <br>
+                        {{ message2 }}
+                    </form>
                 </div>
             </div>
         </div>
@@ -89,8 +111,8 @@
                 <div class="card-header">
                     Usuń konto
                 </div>
-                <div class="card-text my-3 mx-3">
-                    gjknljkgchjvbkjcghvjkb
+                <div class="card-body">
+
                 </div>
             </div>
 
@@ -120,5 +142,16 @@
         // Show the current tab, and add an "active" class to the button that opened the tab
         document.getElementById(tab).style.display = "block";
         evt.currentTarget.className += " active";
+
+        // var button = document.getElementById("submit-button1").onclick = pressTab(event, 'account_info');
     }
+
+    {#if ("{{ message }}" == "") {#}
+    //     document.getElementById("submit-button1").onclick = function () {
+    //         var millisecondsToWait = 5000;
+    //         setTimeout(function() {
+    //             pressTab(event, 'account_info');
+    //         }, millisecondsToWait);
+    //     }
+    // }
 </script>
