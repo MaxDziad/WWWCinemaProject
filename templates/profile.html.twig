@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/stylesheets/profile.css">
+<link rel="stylesheet" href="/stylesheets/profile_style.css">
 </head>
 
 
@@ -9,7 +9,7 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-header">
-                    Moje konto
+                    <b>MOJE KONTO</b>
                 </div>
                 <div class="btn-group-vertical tab" role="group" id="choose-card">
                     <button class="tab-links" onclick="pressTab(event, 'tickets')">Moje bilety</button>
@@ -24,9 +24,9 @@
         <div class="tabcontent col-8" id="tickets">
             <div class="card" id="card-content">
                 <div class="card-header">
-                    Moje bilety
+                    MOJE BILETY
                 </div>
-                <div class="card-body my-3 mx-3">
+                <div class="card-body mx-3">
                     <table class="table table-striped" id="cart-table">
                         <thead>
                         <tr>
@@ -59,22 +59,19 @@
         <div class="tabcontent col-8" id="account_info">
             <div class="card" id="card-content">
                 <div class="card-header">
-                    Zmień hasło
+                    ZMIEŃ HASŁO
                 </div>
-                <div class="card-body ">
-                    <form action="/profile" method="POST" class="password-changing-form">
-                        <input id="chng-pswd-old" type="password" class="line" name="old_password"
-                               placeholder="Aktualne hasło:">
+                <div class="card-body mx-3">
+                    <form action="/profile" method="POST">
+                        <input class="password_inputs" type="password" name="current_password" placeholder="Aktualne hasło">
                         <br>
-                        <input id="chng-pswd-new" type="password" class="line" name="new_password"
-                               placeholder="Nowe hasło:">
+                        <input class="password_inputs" type="password" name="change_password" placeholder="Nowe hasło">
                         <br>
-                        <input id="chng-pswd-rpt" type="password" class="line" name="repeat_password"
-                               placeholder="Powtórz nowe hasło:">
+                        <input class="password_inputs" type="password" name="change_password_repeat" placeholder="Powtórz nowe hasło">
                         <br>
-                        <input id="submit-button1" type="submit" class="btn btn-success btn-lg">
+                        <input type="submit" class="btn btn-success btn-lg" value="ZMIEŃ HASŁO">
                         <br>
-                        {{ message }}
+                        {{ message_password }}
                     </form>
                 </div>
             </div>
@@ -86,20 +83,23 @@
                 <div class="card-header">
                     ZMIEŃ DANE OSOBOWE
                 </div>
-                <div class="card-text">
-                    <form action="/profile" method="POST" class="personal-info-changing-form">
-                        <input id="change-address" type="text" class="line" name="address" placeholder="{{ address }}:">
-                        <input id="change-address-cd" type="text" class="line" name="address_cd" placeholder="{{ address2 }}">
+                <div class="card-body mx-3">
+                    <form action="/profile" method="POST">
+                        <input class="user_inputs" type="text" name="name" placeholder="Imię" value="{{ name }}">
+                        <input class="user_inputs" type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}">
                         <br>
-                        <input id="change-postcode" type="text" class="line" name="postcode" placeholder="{{ postcode }}">
-                        <input id="change-city" type="text" class="line" name="city" placeholder="{{ city }}">
+                        <input class="user_inputs" type="text" name="address" placeholder="Ulica" value="{{ address }}">
+                        <input class="user_inputs" type="text" name="address_cd" placeholder="Nr domu/lokalu" value="{{ address_cd }}">
                         <br>
-                        <input id="change-phone-number" type="text" class="line" name="phone-number" placeholder="{{ phone }}">
-                        <input id="password-verify" type="password" class="line" name="password-verify" placeholder="Podaj hasło:">
+                        <input class="user_inputs" type="text" name="postcode" placeholder="Kod pocztowy" value="{{ postcode }}">
+                        <input class="user_inputs" type="text" name="city" placeholder="Miasto" value="{{ city }}">
                         <br>
-                        <input id="submit-button2" type="submit" class="btn btn-success btn-lg">
+                        <input class="user_inputs" type="text" name="email" placeholder="E-mail" value="{{ email }}">
+                        <input class="user_inputs" type="text" name="phone_number" placeholder="Telefon" value="{{ phone_number }}">
                         <br>
-                        {{ message2 }}
+                        <input type="submit" class="btn btn-success btn-lg" value="ZMIEŃ DANE">
+                        <br>
+                        {{ message_user }}
                     </form>
                 </div>
             </div>
@@ -109,10 +109,17 @@
         <div class="tabcontent col-8" id="delete_account">
             <div class="card" id="card-content">
                 <div class="card-header">
-                    Usuń konto
+                    USUŃ KONTO
                 </div>
-                <div class="card-body">
-
+                <div class="card-body mx-3">
+                    <form action="/profile" method="POST">
+                        <a>Usunięcie konta wymaga potwierdzenia hasłem.</a>
+                        <br>
+                        <input class="delete_input" type="password" name="password_confirm" placeholder="Aktualne hasło">
+                        <br>
+                        <input type="submit" class="btn btn-danger btn-lg" value="USUŃ KONTO">
+                        <br>{{ message_delete }}
+                    </form>
                 </div>
             </div>
 
