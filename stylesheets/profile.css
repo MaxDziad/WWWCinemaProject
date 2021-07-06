@@ -52,6 +52,13 @@
 form{
     align-content: flex-start;
 }
+
+.password-inputs {
+    margin-right: 7px;
+    margin-left: 7px;
+    margin-bottom: 15px;
+}
+
 .line{
     margin-top: 15px;
     margin-bottom: 15px;

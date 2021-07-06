@@ -12,7 +12,7 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
     $new_email = $_POST['new_email'];
     $new_phone_number = $_POST['new_phone_number'];
     $new_password = $_POST['new_password'];
-    $new_password_confirm = $_POST['new_password_confirm'];
+    $new_password_repeat = $_POST['new_password_repeat'];
 
     $recaptcha = new \ReCaptcha\ReCaptcha('6LcrreYUAAAAALTdoToeer_H4NZ1ECK4U76g0huL');
     $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
@@ -34,7 +34,7 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
                         if (!preg_match('/^[0-9]{9}$/', $new_phone_number)) {
                             $message = "Podany numer telefonu jest niepoprawny.";
                         } else {
-                            if (strcmp($new_password, $new_password_confirm) !== 0) {
+                            if (strcmp($new_password, $new_password_repeat) !== 0) {
                                 $message = "Podane hasła różnią się.";
                             } else {
                                 if (strlen($new_password) < 6) {
