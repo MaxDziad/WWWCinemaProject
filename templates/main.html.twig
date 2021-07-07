@@ -7,9 +7,6 @@
     <div class="container-xl">
         <div class="row">
             <div class="col-4 photo" >
-{#                <button class="arrow left" id="<">#}
-{#                    <i class="arr lef"></i>#}
-{#                </button>#}
                 <a id= "cont1" href="https://s123.labagh.pl/movies/show/{{ id[0] }}"><img id="img1" src="{{ poster_path[0] }}" ></a>
             </div>
             <div class="col-4 photo">
@@ -17,9 +14,6 @@
 
             </div>
             <div class="col-4 photo">
-{#                <button class="arrow right" id=">">#}
-{#                    <i class="arr rig"></i>#}
-{#                </button>#}
                 <a id="cont3" href="https://s123.labagh.pl/movies/show/{{ id[2] }}"><img id="img3" src="{{ poster_path[2] }}" ></a>
             </div>
 
@@ -37,45 +31,6 @@
     {% endfor %}
 
 
-    var next = document.getElementById(">");
-    var prev = document.getElementById("<");
-
-    $(document).ready(function () {
-
-        next.onclick = function () {
-            for (let j = 1; j <= 3; j++) {
-
-                let image = document.getElementById(("img").concat(j.toString()));
-                // let cont = document.getElementById(("cont").concat(j.toString()));
-                let currentindex = posters.findIndex(element => element == (image.src).substring(22));
-
-                if (currentindex == 8) {
-                    image.src = posters[0]
-                    image.parentElement.href = ("https://s123.labagh.pl/movies/show/").concat(id[0]);
-                } else {
-                    image.src = posters[currentindex + 1];
-                    image.parentElement.href = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex + 1]);
-                }
-            }
-        }
-
-        prev.onclick = function () {
-            for (let j = 1; j <= 3; j++) {
-
-                let image = document.getElementById(("img").concat(j.toString()));
-                let cont = document.getElementById(("cont").concat(j.toString()));
-                let currentindex = posters.findIndex(element => element == (image.src).substring(22));
-
-                if (currentindex == 0) {
-                    image.src = posters[8]
-                    cont.href = ("https://s123.labagh.pl/movies/show/").concat(id[8]);
-                } else {
-                    image.src = posters[currentindex - 1];
-                    cont.href = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex - 1]);
-                }
-            }
-        }
-    });
 
     var intervalId = setInterval(function() {
         for (let j = 1; j <= 3; j++) {
@@ -92,7 +47,5 @@
             }
         }
     }, 3000);
-    // next.addEventListener("click", changeimg(">"));
-    // prev.addEventListener("click", changeimg("<"));
 
 </script>
