@@ -117,7 +117,7 @@
                         <br>
                         <input class="delete_input" type="password" name="password_confirm" placeholder="Aktualne hasło">
                         <br>
-                        <input type="submit" class="btn btn-danger btn-lg" value="USUŃ KONTO">
+                        <input id ="delete_button" type="submit" class="btn btn-danger btn-lg" value="USUŃ KONTO">
                         <br>{{ message_delete }}
                     </form>
                 </div>
@@ -152,6 +152,10 @@
 
         // var button = document.getElementById("submit-button1").onclick = pressTab(event, 'account_info');
     }
+    // var delete_button = document.getElementById("delete_button");
+    // delete_button.onclick = function (){
+    //     alert("Konto usunięte pomyślnie")
+    // }
 
     {#if ("{{ message }}" == "") {#}
     //     document.getElementById("submit-button1").onclick = function () {
