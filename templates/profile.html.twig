@@ -63,11 +63,13 @@
                 </div>
                 <div class="card-body mx-3">
                     <form action="/profile" method="POST">
-                        <input class="password_inputs" type="password" name="current_password" placeholder="Aktualne hasło">
+                        <input class="password_inputs" type="password" name="current_password"
+                               placeholder="Aktualne hasło">
                         <br>
                         <input class="password_inputs" type="password" name="changed_password" placeholder="Nowe hasło">
                         <br>
-                        <input class="password_inputs" type="password" name="changed_password_repeat" placeholder="Powtórz nowe hasło">
+                        <input class="password_inputs" type="password" name="changed_password_repeat"
+                               placeholder="Powtórz nowe hasło">
                         <br>
                         <input type="submit" class="btn btn-success btn-lg" value="ZMIEŃ HASŁO">
                         <br>
@@ -85,17 +87,25 @@
                 </div>
                 <div class="card-body mx-3">
                     <form action="/profile" method="POST">
-                        <input class="user_inputs" type="text" name="changed_name" placeholder="Imię" value="{{ name }}">
-                        <input class="user_inputs" type="text" name="changed_surname" placeholder="Nazwisko" value="{{ surname }}">
+                        <input class="user_inputs" type="text" name="changed_name" placeholder="Imię"
+                               value="{{ name }}">
+                        <input class="user_inputs" type="text" name="changed_surname" placeholder="Nazwisko"
+                               value="{{ surname }}">
                         <br>
-                        <input class="user_inputs" type="text" name="changed_address" placeholder="Ulica" value="{{ address }}">
-                        <input class="user_inputs" type="text" name="changed_address_cd" placeholder="Nr domu/lokalu" value="{{ address_cd }}">
+                        <input class="user_inputs" type="text" name="changed_address" placeholder="Ulica"
+                               value="{{ address }}">
+                        <input class="user_inputs" type="text" name="changed_address_cd" placeholder="Nr domu/lokalu"
+                               value="{{ address_cd }}">
                         <br>
-                        <input class="user_inputs" type="text" name="changed_postcode" placeholder="Kod pocztowy" value="{{ postcode }}">
-                        <input class="user_inputs" type="text" name="changed_city" placeholder="Miasto" value="{{ city }}">
+                        <input class="user_inputs" type="text" name="changed_postcode" placeholder="Kod pocztowy"
+                               value="{{ postcode }}">
+                        <input class="user_inputs" type="text" name="changed_city" placeholder="Miasto"
+                               value="{{ city }}">
                         <br>
-                        <input class="user_inputs" type="text" name="changed_email" placeholder="E-mail" value="{{ email }}">
-                        <input class="user_inputs" type="text" name="changed_phone_number" placeholder="Telefon" value="{{ phone_number }}">
+                        <input class="user_inputs" type="text" name="changed_email" placeholder="E-mail"
+                               value="{{ email }}">
+                        <input class="user_inputs" type="text" name="changed_phone_number" placeholder="Telefon"
+                               value="{{ phone_number }}">
                         <br>
                         <input type="submit" class="btn btn-success btn-lg" value="ZMIEŃ DANE">
                         <br>
@@ -115,9 +125,10 @@
                     <form action="/profile" method="POST">
                         <a>Usunięcie konta wymaga potwierdzenia hasłem.</a>
                         <br>
-                        <input class="delete_input" type="password" name="password_confirm" placeholder="Aktualne hasło">
+                        <input class="delete_input" type="password" name="password_confirm"
+                               placeholder="Aktualne hasło">
                         <br>
-                        <input id ="delete_button" type="submit" class="btn btn-danger btn-lg" value="USUŃ KONTO">
+                        <input id="delete_button" type="submit" class="btn btn-danger btn-lg" value="USUŃ KONTO">
                         <br>{{ message_delete }}
                     </form>
                 </div>
@@ -150,5 +161,14 @@
         document.getElementById(tab).style.display = "block";
         evt.currentTarget.className += " active";
     }
+
+    var current_tab = "{{ current_tab }}";
+     if(current_tab=="account_info"){
+         pressTab(event, "account_info");
+     } else if (current_tab == "private_info") {
+         pressTab(event, "private_info")
+     } else if (current_tab == "delete_account"){
+         pressTab(event, "delete_account")
+     }
 
 </script>

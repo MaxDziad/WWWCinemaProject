@@ -4,7 +4,9 @@
 </head>
 
 <div class="jumbotron" style="background-color: #f5f5f5;">
+
     <div class="container-xl">
+        <h1 class="neon-title">JUŻ TERAZ W NASZYM KINIE</h1>
         <div class="row">
             <div class="col-4 photo" >
                 <a id= "cont1" href="https://s123.labagh.pl/movies/show/{{ id[0] }}"><img id="img1" src="{{ poster_path[0] }}" ></a>
@@ -25,7 +27,7 @@
 
     const posters = [];
     const id = [];
-    {% for i in 0..8 %}
+    {% for i in 0..array_length-1 %}
     posters[{{ i }}] = "{{ poster_path[i] }}";
     id[{{ i }}] = "{{ id[i] }}";
     {% endfor %}
@@ -38,14 +40,14 @@
             let image = document.getElementById(("img").concat(j.toString()));
             let currentindex = posters.findIndex(element => element == (image.src).substring(22));
 
-            if (currentindex >5 ){
-                image.src = posters[currentindex-6]
-                image.parentElement.href  = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex-6]);
+            if (currentindex > {{ array_length - 4 }} ){
+                image.src = posters[currentindex - {{ array_length - 3 }}]
+                image.parentElement.href  = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex-{{ array_length - 3 }}]);
             } else {
                 image.src = posters[currentindex + 3];
                 image.parentElement.href  = ("https://s123.labagh.pl/movies/show/").concat(id[currentindex + 3]);
             }
         }
-    }, 3000);
+    }, 2500);
 
 </script>

@@ -7,6 +7,7 @@ $title = array();
 $date = array();
 $time = array();
 $i = 0;
+$current_tab = "";
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $i++;
@@ -27,6 +28,8 @@ if (isset($_POST['current_password']) && isset($_POST['changed_password']) && is
     $current_password = $_POST['current_password'];
     $changed_password = $_POST['changed_password'];
     $changed_password_repeat = $_POST['changed_password_repeat'];
+    $current_tab = "account_info";
+
 
     if ($current_password == '' || $changed_password == '' || $changed_password_repeat == '') {
         $message = "Pola nie mogą być puste.";
@@ -67,6 +70,8 @@ if (isset($_POST['changed_name']) && isset($_POST['changed_surname']) && isset($
     $changed_city = $_POST['changed_city'];
     $changed_phone_number = $_POST['changed_phone_number'];
     $changed_email = $_POST['changed_email'];
+    $current_tab = "private_info";
+
 
     if ($changed_name == '' || $changed_surname == '' || $changed_address == '' || $changed_address_cd == '' || $changed_postcode == '' || $changed_city == '' || $changed_email == '' || $changed_phone_number == '') {
         $message2 = "Pola nie mogą być puste.";
@@ -88,7 +93,7 @@ if (isset($_POST['changed_name']) && isset($_POST['changed_surname']) && isset($
                             $stmt_2->execute([':name' => $changed_name, ':surname' => $changed_surname, ':address' => $changed_address, ':address_cd' => $changed_address_cd, ':postcode' => $changed_postcode, ':city' => $changed_city, ':phone_number' => $changed_phone_number, ':email' => $changed_email, ':id' => $user['id']]);
                             $message2 = "Dane zostały zmienione.";
                             header('Location: /profile');
-                        }  catch (PDOException $e) {
+                        } catch (PDOException $e) {
                             $message2 = "Podany email jest już zajęty.";
                         }
                     }
@@ -98,19 +103,20 @@ if (isset($_POST['changed_name']) && isset($_POST['changed_surname']) && isset($
     }
 }
 
-$message3="";
+$message3 = "";
 
 if (isset($_POST['password_confirm'])) {
     $password_confirm = $_POST['password_confirm'];
+    $current_tab = "delete_account";
 
     if ($password_confirm == "") {
         $message3 = "Musisz podać hasło.";
     } else {
-        if(password_verify($password_confirm, $user['password'])){
+        if (password_verify($password_confirm, $user['password'])) {
             $stmt = $dbh->prepare('DELETE FROM users WHERE id = :id');
             $stmt->execute([':id' => $user['id']]);
             header('Location: /logout');
-        }else{
+        } else {
             $message3 = "Podane hasło jest błędne.";
         }
     }
@@ -140,6 +146,8 @@ echo $twig->render('profile.html.twig', [
 
     /*data to deleting an account*/
     'message_delete' => $message3,
+
+    'current_tab' => $current_tab
 
 ]);
 
