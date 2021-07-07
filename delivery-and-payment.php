@@ -80,22 +80,26 @@ if (empty($_SESSION['cart'])) {
                                                 $stmt->execute([':title' => $_SESSION['cart'][$key]['title'], ':date' => $_SESSION['cart'][$key]['date'], ':time' => $_SESSION['cart'][$key]['time']]);
                                                 $amountOfSoldTicket = $stmt->rowCount();
 
-                                                $similarTicketsInCart = 0;
+                                                $ticketsInCart = 0;
                                                 foreach ($_SESSION['cart'] as $ticket) {
                                                     if ($ticket['title'] == $_SESSION['cart'][$key]['title'] && $ticket['date'] == $_SESSION['cart'][$key]['date'] && $ticket['time'] == $_SESSION['cart'][$key]['time']) {
-                                                        $similarTicketsInCart++;
+                                                        $ticketsInCart++;
                                                     }
                                                 }
+
                                                 $maxAmountOfTickets = 3;
-                                                if ($amountOfSoldTicket + $similarTicketsInCart > $maxAmountOfTickets) {
-                                                    $message = $message .'Nie można kupić biletu na seans "' . $_SESSION['cart'][$key]['title'] . '" w dniu ' . $_SESSION['cart'][$key]['date'] . ' o godzinie ' . $_SESSION['cart'][$key]['time'] . '. Brak wolnych miejsc. ';
+                                                if ($amountOfSoldTicket + $ticketsInCart > $maxAmountOfTickets) {
+                                                    if (count($_SESSION['cart']) == 1) {
+                                                        $message = 'Nie możesz kupić biletu, który masz w koszyku. Prawdopodobnie kupił go już ktoś inny. Usuń bilet, wybierz nowy i spróbuj jeszcze raz.';
+                                                    } else {
+                                                        $message = 'Nie możesz kupić wszystkich biletów, które masz w koszyku. Prawdopodobnie niektóre z nich kupił już ktoś inny. Usuń bilety, wybierz nowe i spróbuj jeszcze raz.';
+                                                    }
                                                     $agreement = false;
                                                 }
                                             }
 
                                             if (!$agreement) {
-                                                $link = '/cart/delivery-and-payment';
-                                                echo "<script type='text/javascript'>alert('$message'); window.location = '$link';</script>";
+                                                echo "<script type='text/javascript'>alert('$message');</script>";
                                             } else {
                                                 foreach ($_SESSION['cart'] as $key => $value) {
                                                     try {
