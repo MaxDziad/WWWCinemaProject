@@ -110,7 +110,7 @@ if (isset($_POST['password_confirm'])) {
     }else{
         if(password_verify($password_confirm,$user['password'])){
             $stmt = $dbh->prepare('DELETE FROM users WHERE id = :id');
-            $stmt ->execute([':id' => $user['id']]);
+            $stmt->execute([':id' => $user['id']]);
         }else{
             $message3 = "Hasło jest błędne.";
         }
