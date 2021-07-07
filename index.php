@@ -32,6 +32,7 @@ else {
 if (isset($_GET['logout'])) {
     unset($_SESSION['id']);
     unset($_SESSION['email']);
+    header('Location: /');
 }
 
 if (isset($_SESSION['id']) && isset($_SESSION['email'])) {

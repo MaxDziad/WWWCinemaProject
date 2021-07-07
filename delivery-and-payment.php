@@ -21,6 +21,7 @@ if (empty($_SESSION['cart'])) {
         $phone_number = htmlspecialchars($user['phone_number'], ENT_QUOTES | ENT_HTML401);
 
     } else {
+        $id = 0;
         $name = '';
         $surname = '';
         $address = '';
@@ -42,7 +43,6 @@ if (empty($_SESSION['cart'])) {
         $city = $_POST['city'];
         $email = $_POST['email'];
         $phone_number = $_POST['phone_number'];
-
 
         $recaptcha = new \ReCaptcha\ReCaptcha('6LcrreYUAAAAALTdoToeer_H4NZ1ECK4U76g0huL');
         $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
@@ -77,8 +77,8 @@ if (empty($_SESSION['cart'])) {
                                             foreach ($_SESSION['cart'] as $key => $value) {
                                                 try {
                                                     $ticket = $_SESSION['cart'][$key];
-                                                    $stmt = $dbh->prepare('INSERT INTO tickets (id, title, date, time, price, name, surname, address, address_cd, postcode, city, email, phone_number, delivery, payment, created) VALUES (null, :title, :date, :time, :price, :name, :surname, :address, :address_cd, :postcode, :city, :email, :phone_number, :delivery, :payment, NOW())');
-                                                    $stmt->execute([':title' => $ticket['title'], ':date' => $ticket['date'], ':time' => $ticket['time'], ':price' => $ticket['price'], ':name' => $name, ':surname' => $surname, ':address' => $address, ':address_cd' => $address_cd, ':postcode' => $postcode, ':city' => $city, ':email' => $email, ':phone_number' => $phone_number, ':delivery' => $delivery, ':payment' => $payment]);
+                                                    $stmt = $dbh->prepare('INSERT INTO tickets (id, title, date, time, price, id_client, name, surname, address, address_cd, postcode, city, email, phone_number, delivery, payment, created) VALUES (null, :title, :date, :time, :price, :id_client, :name, :surname, :address, :address_cd, :postcode, :city, :email, :phone_number, :delivery, :payment, NOW())');
+                                                    $stmt->execute([':title' => $ticket['title'], ':date' => $ticket['date'], ':time' => $ticket['time'], ':price' => $ticket['price'], ':id_client' => $id, ':name' => $name, ':surname' => $surname, ':address' => $address, ':address_cd' => $address_cd, ':postcode' => $postcode, ':city' => $city, ':email' => $email, ':phone_number' => $phone_number, ':delivery' => $delivery, ':payment' => $payment]);
                                                 } catch (PDOException $e) {}
                                             }
                                             unset($_SESSION['cart']);

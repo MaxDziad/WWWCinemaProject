@@ -46,7 +46,7 @@ if (isset($_POST['new_name']) && isset($_POST['new_surname']) && isset($_POST['n
                                         $stmt->execute([':name' => $new_name, ':surname' => $new_surname, ':address' => $new_address, ':address_cd' => $new_address_cd, ':postcode' => $new_postcode, ':city' => $new_city, ':email' => $new_email, ':phone_number' => $new_phone_number, ':password' => $new_password]);
                                         $message = "Konto zostało zarejestrowane.";
                                     } catch (PDOException $e) {
-                                        $message = "Podany adres email jest już zajęty.";
+                                        $message = "Podany email jest już zajęty.";
                                     }
                                 }
                             }

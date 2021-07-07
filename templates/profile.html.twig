@@ -27,7 +27,7 @@
                     MOJE BILETY
                 </div>
                 <div class="card-body mx-3">
-                    <table class="table table-striped" id="cart-table">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">Lp.</th>
@@ -65,9 +65,9 @@
                     <form action="/profile" method="POST">
                         <input class="password_inputs" type="password" name="current_password" placeholder="Aktualne hasło">
                         <br>
-                        <input class="password_inputs" type="password" name="change_password" placeholder="Nowe hasło">
+                        <input class="password_inputs" type="password" name="changed_password" placeholder="Nowe hasło">
                         <br>
-                        <input class="password_inputs" type="password" name="change_password_repeat" placeholder="Powtórz nowe hasło">
+                        <input class="password_inputs" type="password" name="changed_password_repeat" placeholder="Powtórz nowe hasło">
                         <br>
                         <input type="submit" class="btn btn-success btn-lg" value="ZMIEŃ HASŁO">
                         <br>
@@ -85,17 +85,17 @@
                 </div>
                 <div class="card-body mx-3">
                     <form action="/profile" method="POST">
-                        <input class="user_inputs" type="text" name="name" placeholder="Imię" value="{{ name }}">
-                        <input class="user_inputs" type="text" name="surname" placeholder="Nazwisko" value="{{ surname }}">
+                        <input class="user_inputs" type="text" name="changed_name" placeholder="Imię" value="{{ name }}">
+                        <input class="user_inputs" type="text" name="changed_surname" placeholder="Nazwisko" value="{{ surname }}">
                         <br>
-                        <input class="user_inputs" type="text" name="address" placeholder="Ulica" value="{{ address }}">
-                        <input class="user_inputs" type="text" name="address_cd" placeholder="Nr domu/lokalu" value="{{ address_cd }}">
+                        <input class="user_inputs" type="text" name="changed_address" placeholder="Ulica" value="{{ address }}">
+                        <input class="user_inputs" type="text" name="changed_address_cd" placeholder="Nr domu/lokalu" value="{{ address_cd }}">
                         <br>
-                        <input class="user_inputs" type="text" name="postcode" placeholder="Kod pocztowy" value="{{ postcode }}">
-                        <input class="user_inputs" type="text" name="city" placeholder="Miasto" value="{{ city }}">
+                        <input class="user_inputs" type="text" name="changed_postcode" placeholder="Kod pocztowy" value="{{ postcode }}">
+                        <input class="user_inputs" type="text" name="changed_city" placeholder="Miasto" value="{{ city }}">
                         <br>
-                        <input class="user_inputs" type="text" name="email" placeholder="E-mail" value="{{ email }}">
-                        <input class="user_inputs" type="text" name="phone_number" placeholder="Telefon" value="{{ phone_number }}">
+                        <input class="user_inputs" type="text" name="changed_email" placeholder="E-mail" value="{{ email }}">
+                        <input class="user_inputs" type="text" name="changed_phone_number" placeholder="Telefon" value="{{ phone_number }}">
                         <br>
                         <input type="submit" class="btn btn-success btn-lg" value="ZMIEŃ DANE">
                         <br>
