@@ -74,15 +74,39 @@ if (empty($_SESSION['cart'])) {
                                         if ($_POST['delivery']=="e-ticket" && $_POST['payment']=="by-collection") {
                                             $message = "Bilet elektroniczny jest dostępny tylko przy płatności przelewem.";
                                         } else {
+                                            $agreement = true;
                                             foreach ($_SESSION['cart'] as $key => $value) {
-                                                try {
-                                                    $ticket = $_SESSION['cart'][$key];
-                                                    $stmt = $dbh->prepare('INSERT INTO tickets (id, title, date, time, price, id_client, name, surname, address, address_cd, postcode, city, email, phone_number, delivery, payment, created) VALUES (null, :title, :date, :time, :price, :id_client, :name, :surname, :address, :address_cd, :postcode, :city, :email, :phone_number, :delivery, :payment, NOW())');
-                                                    $stmt->execute([':title' => $ticket['title'], ':date' => $ticket['date'], ':time' => $ticket['time'], ':price' => $ticket['price'], ':id_client' => $id, ':name' => $name, ':surname' => $surname, ':address' => $address, ':address_cd' => $address_cd, ':postcode' => $postcode, ':city' => $city, ':email' => $email, ':phone_number' => $phone_number, ':delivery' => $delivery, ':payment' => $payment]);
-                                                } catch (PDOException $e) {}
+                                                $stmt = $dbh->prepare("SELECT * FROM tickets WHERE title = :title AND date = :date AND time = :time ");
+                                                $stmt->execute([':title' => $_SESSION['cart'][$key]['title'], ':date' => $_SESSION['cart'][$key]['date'], ':time' => $_SESSION['cart'][$key]['time']]);
+                                                $amountOfSoldTicket = $stmt->rowCount();
+
+                                                $similarTicketsInCart = 0;
+                                                foreach ($_SESSION['cart'] as $ticket) {
+                                                    if ($ticket['title'] == $_SESSION['cart'][$key]['title'] && $ticket['date'] == $_SESSION['cart'][$key]['date'] && $ticket['time'] == $_SESSION['cart'][$key]['time']) {
+                                                        $similarTicketsInCart++;
+                                                    }
+                                                }
+                                                $maxAmountOfTickets = 3;
+                                                if ($amountOfSoldTicket + $similarTicketsInCart > $maxAmountOfTickets) {
+                                                    $message = $message .'Nie można kupić biletu na seans "' . $_SESSION['cart'][$key]['title'] . '" dnia ' . $_SESSION['cart'][$key]['date'] . ' o godzinie ' . $_SESSION['cart'][$key]['time'] . '. Brak wolnych miejsc. ';
+                                                    $agreement = false;
+                                                }
                                             }
-                                            unset($_SESSION['cart']);
-                                            header('Location: /');
+
+                                            if (!$agreement) {
+                                                $link = '/cart/delivery-and-payment';
+                                                echo "<script type='text/javascript'>alert('$message'); window.location = '$link';</script>";
+                                            } else {
+                                                foreach ($_SESSION['cart'] as $key => $value) {
+                                                    try {
+                                                        $ticket = $_SESSION['cart'][$key];
+                                                        $stmt = $dbh->prepare('INSERT INTO tickets (id, title, date, time, price, id_client, name, surname, address, address_cd, postcode, city, email, phone_number, delivery, payment, created) VALUES (null, :title, :date, :time, :price, :id_client, :name, :surname, :address, :address_cd, :postcode, :city, :email, :phone_number, :delivery, :payment, NOW())');
+                                                        $stmt->execute([':title' => $ticket['title'], ':date' => $ticket['date'], ':time' => $ticket['time'], ':price' => $ticket['price'], ':id_client' => $id, ':name' => $name, ':surname' => $surname, ':address' => $address, ':address_cd' => $address_cd, ':postcode' => $postcode, ':city' => $city, ':email' => $email, ':phone_number' => $phone_number, ':delivery' => $delivery, ':payment' => $payment]);
+                                                    } catch (PDOException $e) {}
+                                                }
+                                                unset($_SESSION['cart']);
+                                                header('Location: /');
+                                            }
                                         }
                                     }
                                 }
