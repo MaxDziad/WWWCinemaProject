@@ -68,8 +68,8 @@ if (isset($_POST['changed_name']) && isset($_POST['changed_surname']) && isset($
     $changed_address_cd = $_POST['changed_address_cd'];
     $changed_postcode = $_POST['changed_postcode'];
     $changed_city = $_POST['changed_city'];
-    $changed_phone_number = $_POST['changed_phone_number'];
     $changed_email = $_POST['changed_email'];
+    $changed_phone_number = $_POST['changed_phone_number'];
     $current_tab = "private_info";
 
     if ($changed_name == '' || $changed_surname == '' || $changed_address == '' || $changed_address_cd == '' || $changed_postcode == '' || $changed_city == '' || $changed_email == '' || $changed_phone_number == '') {
@@ -91,6 +91,16 @@ if (isset($_POST['changed_name']) && isset($_POST['changed_surname']) && isset($
                             $stmt_2 = $dbh->prepare('UPDATE users SET name = :name, surname = :surname, address = :address, address_cd = :address_cd, postcode = :postcode, city = :city, phone_number = :phone_number, email = :email WHERE id = :id');
                             $stmt_2->execute([':name' => $changed_name, ':surname' => $changed_surname, ':address' => $changed_address, ':address_cd' => $changed_address_cd, ':postcode' => $changed_postcode, ':city' => $changed_city, ':phone_number' => $changed_phone_number, ':email' => $changed_email, ':id' => $user['id']]);
                             $message2 = "Dane zostały zmienione.";
+
+                            $name = $changed_name;
+                            $surname = $changed_surname;
+                            $address = $changed_address;
+                            $address_cd = $changed_address_cd;
+                            $postcode = $changed_postcode;
+                            $city = $changed_city;
+                            $email = $changed_email;
+                            $phone_number = $changed_phone_number;
+
                         } catch (PDOException $e) {
                             $message2 = "Podany email jest już zajęty.";
                         }
