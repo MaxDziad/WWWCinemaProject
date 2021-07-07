@@ -88,7 +88,7 @@ if (empty($_SESSION['cart'])) {
                                                 }
                                                 $maxAmountOfTickets = 3;
                                                 if ($amountOfSoldTicket + $similarTicketsInCart > $maxAmountOfTickets) {
-                                                    $message = $message .'Nie można kupić biletu na seans "' . $_SESSION['cart'][$key]['title'] . '" dnia ' . $_SESSION['cart'][$key]['date'] . ' o godzinie ' . $_SESSION['cart'][$key]['time'] . '. Brak wolnych miejsc. ';
+                                                    $message = $message .'Nie można kupić biletu na seans "' . $_SESSION['cart'][$key]['title'] . '" w dniu ' . $_SESSION['cart'][$key]['date'] . ' o godzinie ' . $_SESSION['cart'][$key]['time'] . '. Brak wolnych miejsc. ';
                                                     $agreement = false;
                                                 }
                                             }
