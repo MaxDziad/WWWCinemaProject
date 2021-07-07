@@ -81,7 +81,6 @@ else if(isset($_POST['search'])){
     else{
         echo $twig->render('movies_error.html.twig', []);
     }
-
 }
 
 // Showing all the movies when id is not given

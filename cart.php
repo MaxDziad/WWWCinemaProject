@@ -8,12 +8,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 if (isset($_POST['movieDate']) && isset($_POST['movieHour'])){
 
+    $movieID = $_POST['movieID'];
     $movieTitle = $_POST['movieTitle'];
     $movieDate = $_POST['movieDate'];
     $movieHour = $_POST['movieHour'];
 
-    $stmt = $dbh->prepare("SELECT * FROM tickets WHERE
-                            time = :time AND date = :date AND title = :title");
+    $stmt = $dbh->prepare("SELECT * FROM tickets WHERE time = :time AND date = :date AND title = :title");
     $stmt->execute([':title' => $movieTitle, ':time' => $movieHour, ':date' => $movieDate]);
 
     // count similar tickets in cart
@@ -24,12 +24,18 @@ if (isset($_POST['movieDate']) && isset($_POST['movieHour'])){
         }
     }
 
-    // check if tickets are available
-    if($stmt->rowCount() + $similarTicketsInCart >= 2) {
-        $message = "Nie można dodać więcej biletów.";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
+    $maxAmountOfTickets = 3;
 
+    // check if tickets are available
+    if($stmt->rowCount() + $similarTicketsInCart >= $maxAmountOfTickets) {
+        if ($similarTicketsInCart !=0) {
+            $message = "Nie można dodać więcej biletów na ten seans. W koszyku masz już maksymalną dostępną ilość. Wybierz inny dzień lub godzinę.";
+        } else {
+            $message = "Nie można dodać biletów na ten seans. Brak wolnych miejsc. Wybierz inny dzień lub godzinę.";
+        }
+        $link = '/movies/show/'.$movieID;
+        echo "<script type='text/javascript'>alert('$message'); window.location = '$link';</script>";
+    }
     else {
         // add ticket to cart
         $ticket = array(
@@ -39,7 +45,6 @@ if (isset($_POST['movieDate']) && isset($_POST['movieHour'])){
             'price' => 19.99
         );
         array_push($_SESSION['cart'], $ticket);
-        header('Location: /cart');
     }
 }
 
